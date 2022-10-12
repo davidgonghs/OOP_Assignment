@@ -1,5 +1,8 @@
+import repository.Initialization;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Initialization.initialize();
+       // System.out.println("Hello world!");
     }
 }
