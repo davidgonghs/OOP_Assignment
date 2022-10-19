@@ -1,6 +1,6 @@
 package repository;
 
-public interface Respository {
+public interface Repository {
     public void initialize();
     public void save();
 }

@@ -4,13 +4,13 @@ public class StudentResult {
     private String studentNumber;
     private String subjectName;
     private String subjectCode;
-    private double marks;
+    private Double marks;
     private String grade;
 
     public StudentResult() {
     }
 
-    public StudentResult(String studentNumber, String subjectName, String subjectCode, double marks, String grade) {
+    public StudentResult(String studentNumber, String subjectName, String subjectCode, Double marks, String grade) {
         this.studentNumber = studentNumber;
         this.subjectName = subjectName;
         this.subjectCode = subjectCode;

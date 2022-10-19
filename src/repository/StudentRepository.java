@@ -3,14 +3,15 @@ package repository;
 
 
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 import domain.srk.Student;
 
-public class StudentRepository implements Respository{
+public class StudentRepository implements Repository {
     private static String studentDataPath = "src/data/student.csv";
   //  private static String studentResultDataPath = "src/data/studentResult.csv";
 
-    public Map<String,Student> studentMap;
+    public Map<String,Student> studentMap = new HashMap<>();
 
     @Override
     public void initialize() {
@@ -39,6 +40,7 @@ public class StudentRepository implements Respository{
                 writeText.newLine();
                 writeText.write(student.toCsvString());
             }
+            writeText.close();
         }catch (IOException e) {
             e.printStackTrace();
         }
