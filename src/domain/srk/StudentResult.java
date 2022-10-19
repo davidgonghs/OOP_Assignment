@@ -29,6 +29,11 @@ public class StudentResult {
                 '}';
     }
 
+    //to csv string
+    public String toCsvString() {
+        return studentNumber + "," + subjectName + "," + subjectCode + "," + marks + "," + grade;
+    }
+
     public String getStudentNumber() {
         return studentNumber;
     }

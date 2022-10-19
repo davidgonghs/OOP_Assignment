@@ -1,15 +1,19 @@
 package repository;
 
+
+
+import java.io.*;
+import java.util.Map;
 import domain.srk.Student;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Map;
-
-public class StudentRepository {
+public class StudentRepository implements Respository{
     private static String studentDataPath = "src/data/student.csv";
-    public void initialize(Map<String,Student> studentMap) {
+  //  private static String studentResultDataPath = "src/data/studentResult.csv";
+
+    public Map<String,Student> studentMap;
+
+    @Override
+    public void initialize() {
         String line = "";
         String cvsSplitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(studentDataPath))) {
@@ -21,14 +25,24 @@ public class StudentRepository {
                 System.out.println(s.getStudentNumber() + " " + s.getName());
                 studentMap.put(s.getStudentNumber(),s);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void addStudent(Student student) {
-        //write student to csv file
-        
+    @Override
+    public void save() {
+        try {
+            File file = new File(studentDataPath);
+            BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
+            for (Student student : studentMap.values()) {
+                writeText.newLine();
+                writeText.write(student.toCsvString());
+            }
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
 }

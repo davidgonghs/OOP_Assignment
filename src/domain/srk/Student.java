@@ -5,7 +5,6 @@ import java.util.Arrays;
 public class Student {
     private String studentNumber;
     private String name;
-    private StudentResult[] studentResults;
 
     public Student() {
     }
@@ -18,7 +17,6 @@ public class Student {
     public Student(String studentNumber, String name, StudentResult[] studentResults) {
         this.studentNumber = studentNumber;
         this.name = name;
-        this.studentResults = studentResults;
     }
 
     @Override
@@ -26,8 +24,12 @@ public class Student {
         return "Student{" +
                 "studentNumber='" + studentNumber + '\'' +
                 ", name='" + name + '\'' +
-                ", studentResults=" + Arrays.toString(studentResults) +
                 '}';
+    }
+
+    //to csv string
+    public String toCsvString() {
+        return studentNumber + "," + name;
     }
 
     public String getStudentNumber() {
@@ -46,11 +48,4 @@ public class Student {
         this.name = name;
     }
 
-    public StudentResult[] getStudentResults() {
-        return studentResults;
-    }
-
-    public void setStudentResults(StudentResult[] studentResults) {
-        this.studentResults = studentResults;
-    }
 }
