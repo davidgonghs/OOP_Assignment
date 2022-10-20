@@ -13,6 +13,9 @@ public class StudentRepository implements Repository {
 
     public Map<String,Student> studentMap = new HashMap<>();
 
+    public StudentRepository() {
+    }
+
     @Override
     public void initialize() {
         String line = "";
