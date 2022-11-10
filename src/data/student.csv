@@ -1,4 +1,2 @@
-studentNumber,studentName
-b1146,DavidGong
-b1515,Misa
-b1499,Jeremy
+studentNumber,name,age,email,phone,programme
+B1146,David,26,B1146@student.firstcity.edu.my,0173599496,BCSIS

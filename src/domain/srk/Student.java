@@ -4,32 +4,31 @@ import java.util.Arrays;
 
 public class Student {
     private String studentNumber;
+
     private String name;
 
+    private int age;
+
+
+    private String email;
+
+    private String phone;
+
+    private String programme;
+
+    //constructor
+    //default constructor
     public Student() {
     }
 
-    public Student(String studentNumber, String name) {
+    public Student(String studentNumber, String name, int age, String email, String phone, String programme) {
         this.studentNumber = studentNumber;
         this.name = name;
-    }
+        this.age = age;
 
-    public Student(String studentNumber, String name, StudentResult[] studentResults) {
-        this.studentNumber = studentNumber;
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "studentNumber='" + studentNumber + '\'' +
-                ", name='" + name + '\'' +
-                '}';
-    }
-
-    //to csv string
-    public String toCsvString() {
-        return studentNumber + "," + name;
+        this.email = email;
+        this.phone = phone;
+        this.programme = programme;
     }
 
     public String getStudentNumber() {
@@ -48,4 +47,51 @@ public class Student {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getProgramme() {
+        return programme;
+    }
+
+    public void setProgramme(String programme) {
+        this.programme = programme;
+    }
+
+    @Override
+    public String toString() {
+        return "studentNumber='" + studentNumber + '\'' +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", programme='" + programme + '\'';
+    }
+
+
+    //toCSVString
+    public String toCSVString() {
+        return studentNumber + "," + name + "," + age + ","  + email + "," + phone + "," + programme;
+    }
 }

@@ -1,12 +1,64 @@
 import domain.srk.Student;
 import repository.*;
+import service.StudentService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        //show menu
+        //i. Class venues booking
+        //ii. Sports facilities booking
+        //iii. Vehicles booking
+        //iv. Students’ results keeping
+        //v. Exit
+        String[] menu = {"1.Manage Student","2.Class venues booking", "3.Sports facilities booking","4.Students’ results keeping", "5.Exit"};
+        while (true){
+            //show menu
+            for (String s : menu) {
+                System.out.println(s);
+            }
+            //choose menu
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Please choose menu: ");
+            int choose = scanner.nextInt();
+            System.out.println();
+            switch (choose){
+                case 1:
+                    //manage student
+                    StudentService studentService = new StudentService();
+                    studentService.initialize();
+                    studentService.process();
+                    System.out.println();
+                    break;
+                case 2:
+                    //class venues booking
+                    System.out.println();
+                    break;
+                case 3:
+                    //sports facilities booking
+                    System.out.println();
+                    break;
+                case 4:
+                    //students’ results keeping
+                    System.out.println();
+                    break;
+                case 5:
+                    //exit
+                    System.exit(0);
+                    System.out.println();
+                    break;
+                default:
+                    System.out.println("Please choose correct menu");
+                    System.out.println();
+                    break;
+            }
 
+
+
+        }
     }
 }

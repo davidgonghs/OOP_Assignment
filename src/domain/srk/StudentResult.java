@@ -2,6 +2,9 @@ package domain.srk;
 
 public class StudentResult {
     private String studentNumber;
+
+
+
     private String subjectName;
     private String subjectCode;
     private Double marks;
