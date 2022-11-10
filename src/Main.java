@@ -22,11 +22,6 @@ public class Main {
         StudentResultService studentResultService = new StudentResultService(studentResultRepository, studentRepository);
 
         //show menu
-        //i. Class venues booking
-        //ii. Sports facilities booking
-        //iii. Vehicles booking
-        //iv. Students’ results keeping
-        //v. Exit
         String[] menu = {"1.Manage Student","2.Class venues booking", "3.Sports facilities booking","4.Students’ results keeping", "5.Exit"};
         while (true){
             //show menu
