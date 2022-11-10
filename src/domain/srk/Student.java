@@ -2,7 +2,7 @@ package domain.srk;
 
 import java.util.Arrays;
 
-public class Student {
+public class Student implements CSVClass {
     private String studentNumber;
 
     private String name;
@@ -90,8 +90,20 @@ public class Student {
     }
 
 
-    //toCSVString
-    public String toCSVString() {
+    @Override
+    public String toCSV() {
         return studentNumber + "," + name + "," + age + ","  + email + "," + phone + "," + programme;
+
+    }
+
+    @Override
+    public void fromCSV(String csv) {
+        String[] student = csv.split(",");
+        this.studentNumber = student[0];
+        this.name = student[1];
+        this.age = Integer.parseInt(student[2]);
+        this.email = student[3];
+        this.phone = student[4];
+        this.programme = student[5];
     }
 }

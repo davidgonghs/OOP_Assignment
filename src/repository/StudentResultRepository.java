@@ -24,20 +24,21 @@ public class StudentResultRepository implements Repository {
 
             while ((line = br.readLine()) != null) {
                 // use comma as separator
-                String[] studentResult = line.split(cvsSplitBy);
+                StudentResult studentResult = new StudentResult();
+                studentResult.fromCSV(line);
+
                 //create student result object
-                StudentResult sr = new StudentResult(studentResult[0], studentResult[1], studentResult[2], Double.valueOf(studentResult[3]), studentResult[4]);
                 //check student result map contains student number
-                if (studentResultMap.containsKey(sr.getStudentNumber())) {
+                if (studentResultMap.containsKey(studentResult.getStudentNumber())) {
                     //add student result to student result list
-                    studentResultMap.get(sr.getStudentNumber()).add(sr);
+                    studentResultMap.get(studentResult.getStudentNumber()).add(studentResult);
                 } else {
                     //create student result list
                     List<StudentResult> studentResultList = new ArrayList<>();
                     //add student result to student result list
-                    studentResultList.add(sr);
+                    studentResultList.add(studentResult);
                     //add student result list to student result map
-                    studentResultMap.put(sr.getStudentNumber(), studentResultList);
+                    studentResultMap.put(studentResult.getStudentNumber(), studentResultList);
                 }
             }
         } catch (IOException e) {
@@ -51,12 +52,16 @@ public class StudentResultRepository implements Repository {
             //save student result data to file
             File file = new File(studentResultDataPath);
             BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
+            // studentNumber+","+year+","+semester+","+subjectName+","+subjectCode+","+marks+","+grade;
+            //write header
+            writeText.write("studentNumber,year,semester,subjectName,subjectCode,marks,grade");
+
             //loop student result map
             for (List<StudentResult> studentResultList : studentResultMap.values()) {
                 //loop student result list
                 for (StudentResult studentResult : studentResultList) {
                     writeText.newLine();
-                    writeText.write(studentResult.toCsvString());
+                    writeText.write(studentResult.toCSV());
                 }
             }
             writeText.close();

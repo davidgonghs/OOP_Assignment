@@ -19,7 +19,6 @@ public class StudentRepository implements Repository {
     @Override
     public void initialize() {
         String line = "";
-        String cvsSplitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(studentDataPath))) {
             int i = 0;
             while ((line = br.readLine()) != null) {
@@ -28,9 +27,10 @@ public class StudentRepository implements Repository {
                     i++;
                     continue;
                 }
-                String[] student = line.split(cvsSplitBy);
-                Student student1 = new Student(student[0], student[1], Integer.parseInt(student[2]), student[3], student[4], student[5]);
-                studentMap.put(student[0], student1);
+
+                Student student = new Student();
+                student.fromCSV(line);
+                studentMap.put(student.getStudentNumber(),student);
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -47,7 +47,7 @@ public class StudentRepository implements Repository {
             writeText.write("studentNumber,name,age,email,phone,programme");
             for (Student student : studentMap.values()) {
                 writeText.newLine();
-                writeText.write(student.toCSVString());
+                writeText.write(student.toCSV());
             }
             writeText.close();
         }catch (IOException e) {
