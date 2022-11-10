@@ -1,18 +1,13 @@
 package service;
 
 import domain.srk.Student;
-import domain.srk.StudentResult;
-import repository.StudentRepository;
-import repository.StudentResultRepository;
+import repository.StudentRepositoryImpl;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class StudentService implements Service {
 
-    public StudentRepository studentRepository=new StudentRepository();
-    public StudentResultRepository studentResultRepository=new StudentResultRepository();
+    public StudentRepositoryImpl studentRepository=new StudentRepositoryImpl();
 
     //initialize function
     public void initialize() {
@@ -88,7 +83,7 @@ public class StudentService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
-        Student student = studentRepository.studentMap.get(studentNumber);
+        Student student = studentRepository.search(studentNumber);
         if (student != null) {
             System.out.println(student);
         } else {
@@ -99,9 +94,7 @@ public class StudentService implements Service {
     @Override
     public void showAll() {
         //loop student map
-        for (Student student : studentRepository.studentMap.values()) {
-            System.out.println(student.toString());
-        }
+        studentRepository.showAll();
     }
 
     @Override
@@ -137,7 +130,7 @@ public class StudentService implements Service {
         String email = studentNumber+"@student.firstcity.edu.my";
 
         Student student = new Student(studentNumber, name, age, email, phone, programme);
-        studentRepository.studentMap.put(studentNumber, student);
+        studentRepository.add(student);
     }
 
     @Override
@@ -147,7 +140,7 @@ public class StudentService implements Service {
         System.out.println("Enter Student Number: ");
         String studentNumber = scanner.nextLine();
         //check student number is it exist
-        while (!studentRepository.studentMap.containsKey(studentNumber)){
+        while (studentRepository.search(studentNumber) != null){
             System.out.println("Can't find student");
             studentNumber = scanner.nextLine();
         }
@@ -173,7 +166,7 @@ public class StudentService implements Service {
         String email = studentNumber+"@student.firstcity.edu.my";
 
         Student student = new Student(studentNumber, name, age, email, phone, programme);
-        studentRepository.studentMap.put(studentNumber, student);
+        studentRepository.update(student);
     }
 
     @Override
@@ -182,7 +175,7 @@ public class StudentService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Student Number: ");
         String studentNumber = scanner.nextLine();
-        studentRepository.studentMap.remove(studentNumber);
+        studentRepository.delete(studentNumber);
     }
 
     //save function
