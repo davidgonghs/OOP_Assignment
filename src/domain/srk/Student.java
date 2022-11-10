@@ -1,6 +1,6 @@
 package domain.srk;
 
-import java.util.Arrays;
+import domain.CSVClass;
 
 public class Student implements CSVClass {
     private String studentNumber;

@@ -1,4 +1,4 @@
-package domain.srk;
+package domain;
 
 public interface CSVClass {
     public String toCSV();

@@ -1,5 +1,7 @@
 package domain.srk;
 
+import domain.CSVClass;
+
 public class StudentResult implements CSVClass {
     private String studentNumber;
     private int year;
