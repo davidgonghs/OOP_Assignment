@@ -72,9 +72,9 @@ public class StudentResultService implements Service{
                     break;
                 case 6:
                     //exit
-                    System.exit(0);
+                    save();
                     System.out.println();
-                    break;
+                    return;
                 default:
                     System.out.println("Please choose correct menu");
                     System.out.println();
@@ -92,7 +92,7 @@ public class StudentResultService implements Service{
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
         ArrayList<StudentResult> studentResults = studentResultRepository.search(studentNumber);
-        if (studentResults.size() == 0){
+        if (studentResults == null){
             System.out.println("No result found");
         }else {
             //show student result and calculate cgpa and semester gpa

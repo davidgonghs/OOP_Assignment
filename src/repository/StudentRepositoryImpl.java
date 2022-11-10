@@ -22,7 +22,6 @@ public class StudentRepositoryImpl implements StudentRepository {
         try (BufferedReader br = new BufferedReader(new FileReader(studentDataPath))) {
             int i = 0;
             while ((line = br.readLine()) != null) {
-                // use comma as separator
                 if (i == 0) {
                     i++;
                     continue;

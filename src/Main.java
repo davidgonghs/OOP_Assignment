@@ -21,6 +21,7 @@ public class Main {
         //show menu
         String[] menu = {"1.Manage Student","2.Class venues booking", "3.Sports facilities booking","4.Students’ results keeping", "5.Exit"};
         while (true){
+            System.out.println("=================Main Menu==================");
             //show menu
             for (String s : menu) {
                 System.out.println(s);

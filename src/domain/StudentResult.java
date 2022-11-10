@@ -28,7 +28,18 @@ public class StudentResult implements CSVClass {
     }
 
 
-
+    @Override
+    public String toString() {
+        return
+                "studentNumber='" + studentNumber + '\'' +
+                ", semester=" + semester +
+                ", code='" + code + '\'' +
+                ", module='" + module + '\'' +
+                ", marks=" + marks +
+                ", grade='" + grade + '\'' +
+                ", credit=" + credit +
+                ", gpaPoint=" + gpaPoint ;
+    }
 
     public double getCredit() {
         return credit;

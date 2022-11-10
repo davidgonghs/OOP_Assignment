@@ -22,12 +22,16 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
         String line = "";
         String cvsSplitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(studentResultDataPath))) {
-
+            int i = 0;
             while ((line = br.readLine()) != null) {
+                if (i == 0) {
+                    i++;
+                    continue;
+                }
+
                 // use comma as separator
                 StudentResult studentResult = new StudentResult();
                 studentResult.fromCSV(line);
-
                 //create student result object
                 //check student result map contains student number
                 if (studentResultMap.containsKey(studentResult.getStudentNumber())) {
