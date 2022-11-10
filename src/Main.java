@@ -54,6 +54,7 @@ public class Main {
                     break;
                 case 4:
                     //students’ results keeping
+                    studentResultService.process();
                     System.out.println();
                     break;
                 case 5:
@@ -66,8 +67,6 @@ public class Main {
                     System.out.println();
                     break;
             }
-
-
 
         }
     }
