@@ -1,3 +1,2 @@
-
-B1515,Misa,18,b1515@student.firstcity.edu.my,0173599499,BSEN
-B1146,DavidGong,26,B1146@student.firstcity.edu.my,0123456789,BCSIS
+studentNumber,name,age,email,phone,programme
+B1146,David,26,B1146@student.firstcity.edu.my,0173599496,BCSIS

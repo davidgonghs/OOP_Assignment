@@ -4,25 +4,38 @@ import domain.CSVClass;
 
 public class StudentResult implements CSVClass {
     private String studentNumber;
-    private int year;
     private int semester;
-    private String subjectName;
-    private String subjectCode;
-    private Double marks;
+    private String code;
+    private String module;
+    private double marks;
     private String grade;
+    private double credit;
+    private double gpaPoint;
+
 
     public StudentResult() {
     }
 
-    //constructor
-    public StudentResult(String studentNumber, String subjectCode, String subjectName, String year, String semester, String marks, String grade) {
+    public StudentResult(String studentNumber, int semester, String code, String module, double marks, String grade, double credit, double gpaPoint) {
         this.studentNumber = studentNumber;
-        this.year = Integer.parseInt(year);
-        this.semester = Integer.parseInt(semester);
-        this.subjectName = subjectName;
-        this.subjectCode = subjectCode;
-        this.marks = Double.parseDouble(marks);
+        this.semester = semester;
+        this.code = code;
+        this.module = module;
+        this.marks = marks;
         this.grade = grade;
+        this.credit = credit;
+        this.gpaPoint = gpaPoint;
+    }
+
+
+
+
+    public double getCredit() {
+        return credit;
+    }
+
+    public void setCredit(double credit) {
+        this.credit = credit;
     }
 
     public String getStudentNumber() {
@@ -33,14 +46,6 @@ public class StudentResult implements CSVClass {
         this.studentNumber = studentNumber;
     }
 
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
     public int getSemester() {
         return semester;
     }
@@ -49,27 +54,29 @@ public class StudentResult implements CSVClass {
         this.semester = semester;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+
+
+    public String getCode() {
+        return code;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getSubjectCode() {
-        return subjectCode;
+    public String getModule() {
+        return module;
     }
 
-    public void setSubjectCode(String subjectCode) {
-        this.subjectCode = subjectCode;
+    public void setModule(String module) {
+        this.module = module;
     }
 
-    public Double getMarks() {
+    public double getMarks() {
         return marks;
     }
 
-    public void setMarks(Double marks) {
+    public void setMarks(double marks) {
         this.marks = marks;
     }
 
@@ -81,33 +88,31 @@ public class StudentResult implements CSVClass {
         this.grade = grade;
     }
 
-    @Override
-    public String toString() {
-        return
-                "studentNumber='" + studentNumber + '\'' +
-                ", year=" + year +
-                ", semester=" + semester +
-                ", subjectName='" + subjectName + '\'' +
-                ", subjectCode='" + subjectCode + '\'' +
-                ", marks=" + marks +
-                ", grade='" + grade + '\'';
+
+    public double getGpaPoint() {
+        return gpaPoint;
     }
 
-    //toCSV function
-    public String toCSV(){
-        return studentNumber+","+year+","+semester+","+subjectName+","+subjectCode+","+marks+","+grade;
+    public void setGpaPoint(double gpaPoint) {
+        this.gpaPoint = gpaPoint;
+    }
+
+
+    @Override
+    public String toCSV() {
+        return studentNumber+","+semester+","+code+","+module+","+marks+","+grade+","+credit+","+gpaPoint;
     }
 
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");
         studentNumber = data[0];
-        year = Integer.parseInt(data[1]);
-        semester = Integer.parseInt(data[2]);
-        subjectName = data[3];
-        subjectCode = data[4];
-        marks = Double.parseDouble(data[5]);
-        grade = data[6];
+        semester = Integer.parseInt(data[1]);
+        code = data[2];
+        module = data[3];
+        marks =  Double.parseDouble(data[4]);
+        grade = data[5];
+        credit = Double.parseDouble(data[6]);
+        gpaPoint = Double.parseDouble(data[7]);
     }
-
 }

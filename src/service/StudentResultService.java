@@ -6,6 +6,9 @@ import repository.StudentResultRepository;
 import repository.StudentResultRepositoryImpl;
 import tool.CommonTool;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class StudentResultService implements Service{
@@ -24,6 +27,8 @@ public class StudentResultService implements Service{
     @Override
     public void showMenu() {
         String[] menu = {"1.Search Student Result", "2.Show All Student Result", "3.Add Student Result", "4.Update Student Result", "5.Delete Student Result","6.Exit"};
+
+
         for (String s : menu) {
             System.out.println(s);
         }
@@ -72,21 +77,57 @@ public class StudentResultService implements Service{
                 case 6:
                     //exit
                     System.exit(0);
+                    System.out.println();
                     break;
                 default:
-                    System.out.println("Please choose menu from 1 to 6");
+                    System.out.println("Please choose correct menu");
+                    System.out.println();
                     break;
             }
+
+
         }
     }
+
 
     @Override
     public void search() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
-        studentResultRepository.search(studentNumber);
+        ArrayList<StudentResult> studentResults = studentResultRepository.search(studentNumber);
+        if (studentResults.size() == 0){
+            System.out.println("No result found");
+        }else {
+            //show student result and calculate cgpa and semester gpa
+            double totalCredit = 0;
+            double totalGpaPoint = 0;
+            Map<Integer, Double> semesterGpaMap = new HashMap<>();
+            Map<Integer, Double> semesterCreditMap = new HashMap<>();
+            for (StudentResult studentResult : studentResults) {
+                System.out.println(studentResult);
+                totalCredit += studentResult.getCredit();
+                totalGpaPoint += studentResult.getGpaPoint();
 
+                if (semesterGpaMap.containsKey(studentResult.getSemester())){
+                    double gpaPoint = semesterGpaMap.get(studentResult.getSemester());
+                    semesterGpaMap.put(studentResult.getSemester(), gpaPoint + studentResult.getGpaPoint());
+
+                    double credit = semesterCreditMap.get(studentResult.getSemester());
+                    semesterCreditMap.put(studentResult.getSemester(), credit + studentResult.getCredit());
+                }else {
+                    semesterGpaMap.put(studentResult.getSemester(), studentResult.getGpaPoint());
+                    semesterCreditMap.put(studentResult.getSemester(), studentResult.getCredit());
+                }
+            }
+            double cgpa = totalGpaPoint / totalCredit;
+            System.out.println("CGPA: " + cgpa);
+            //get semester gpa
+            for (Map.Entry<Integer, Double> entry : semesterGpaMap.entrySet()) {
+                double semesterGpa = entry.getValue() / semesterCreditMap.get(entry.getKey());
+                System.out.println("Semester " + entry.getKey() + " GPA: " + semesterGpa);
+            }
+        }
     }
 
     @Override
@@ -96,69 +137,83 @@ public class StudentResultService implements Service{
 
     @Override
     public void add() {
-        //get user input then ceate new StudentResult object
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
-        //check student number is exist
-        if (studentRepository.search(studentNumber) == null){
-            System.out.println("Can not find student with Student Number: " + studentNumber);
-            return;
+        //check student number
+        while (studentRepository.search(studentNumber) == null){
+            System.out.println("Student number not found!");
+            System.out.println("Please input student number: ");
+            studentNumber = scanner.nextLine();
         }
 
-        System.out.println("Please input subject code: ");
-        String subjectCode = scanner.nextLine();
-
-        System.out.println("Please input subject name: ");
-        String subjectName = scanner.nextLine();
-
-        System.out.println("Please input year: ");
-        String year = scanner.nextLine();
 
         System.out.println("Please input semester: ");
-        String semester = scanner.nextLine();
+        int semester = scanner.nextInt();
+
+        System.out.println("Please input code: ");
+        String code = scanner.nextLine();
+
+        System.out.println("Please input module: ");
+        String module = scanner.nextLine();
 
         System.out.println("Please input marks: ");
-        String marks = scanner.nextLine();
+        double marks = scanner.nextDouble();
+        //check marks is valid
+        while (!CommonTool.isMarksValid(marks)){
+            System.out.println("Please input valid marks: ");
+            marks = scanner.nextDouble();
+        }
 
-        String grade = CommonTool.getGrade(Double.parseDouble(marks));
+        String grade = CommonTool.getGrade(marks);
 
-        StudentResult studentResult = new StudentResult(studentNumber,subjectCode,subjectName,year,semester,marks,grade);
+        System.out.println("Please input credit: ");
+        double credit = scanner.nextDouble();
+
+        double gradePoints = CommonTool.getGradePoints(grade);
+        double gpaPoint = credit * gradePoints;
+
+        StudentResult studentResult = new StudentResult(studentNumber,semester,code,module,marks,grade,credit,gpaPoint);
         studentResultRepository.add(studentResult);
     }
 
     @Override
     public void update() {
-        //get user input then ceate new StudentResult object
+        //update student result
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
-        //check student number is exist
-        if (studentRepository.search(studentNumber) == null){
-            System.out.println("Can not find student with Student Number: " + studentNumber);
-            return;
+        //check student number
+        while (studentRepository.search(studentNumber) == null){
+            System.out.println("Student number not found!");
+            System.out.println("Please input student number: ");
+            studentNumber = scanner.nextLine();
         }
 
-        System.out.println("Please input subject code: ");
-        String subjectCode = scanner.nextLine();
-
-        System.out.println("Please input subject name: ");
-        String subjectName = scanner.nextLine();
-
-        System.out.println("Please input year: ");
-        String year = scanner.nextLine();
-
         System.out.println("Please input semester: ");
-        String semester = scanner.nextLine();
+        int semester = scanner.nextInt();
+
+        System.out.println("Please input code: ");
+        String code = scanner.nextLine();
+
+        System.out.println("Please input module: ");
+        String module = scanner.nextLine();
+
 
         System.out.println("Please input marks: ");
-        String marks = scanner.nextLine();
+        double marks = scanner.nextDouble();
 
-        String grade = CommonTool.getGrade(Double.parseDouble(marks));
+        String grade = CommonTool.getGrade(marks);
 
-        StudentResult studentResult = new StudentResult(studentNumber,subjectCode,subjectName,year,semester,marks,grade);
+        System.out.println("Please input credit: ");
+        double credit = scanner.nextDouble();
+
+        double gradePoints = CommonTool.getGradePoints(grade);
+        double gpaPoint = credit * gradePoints;
+
+        StudentResult studentResult = new StudentResult(studentNumber,semester,code,module,marks,grade,credit,gpaPoint);
+
         studentResultRepository.update(studentResult);
-
     }
 
     @Override
@@ -168,8 +223,8 @@ public class StudentResultService implements Service{
         String studentNumber = scanner.nextLine();
         //get subject code
         System.out.println("Please input subject code: ");
-        String subjectCode = scanner.nextLine();
-        studentResultRepository.delete(studentNumber,subjectCode);
+        String code = scanner.nextLine();
+        studentResultRepository.delete(studentNumber,code);
 
     }
 
