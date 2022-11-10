@@ -1,4 +1,4 @@
-package domain.srk;
+package domain;
 
 import domain.CSVClass;
 

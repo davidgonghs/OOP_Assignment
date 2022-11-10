@@ -1,8 +1,7 @@
 package service;
 
-import domain.srk.Student;
+import domain.Student;
 import repository.StudentRepository;
-import repository.StudentRepositoryImpl;
 
 import java.util.Scanner;
 

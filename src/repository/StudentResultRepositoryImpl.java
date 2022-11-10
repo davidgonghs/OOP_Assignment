@@ -1,7 +1,6 @@
 package repository;
 
-import domain.CSVClass;
-import domain.srk.*;
+import domain.StudentResult;
 
 import java.io.*;
 import java.util.ArrayList;

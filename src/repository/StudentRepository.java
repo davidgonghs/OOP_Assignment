@@ -1,7 +1,6 @@
 package repository;
 
-import domain.CSVClass;
-import domain.srk.Student;
+import domain.Student;
 
 public interface StudentRepository extends Repository {
     public Student search(String keyword);

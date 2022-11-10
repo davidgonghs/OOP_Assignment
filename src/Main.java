@@ -1,10 +1,7 @@
-import domain.srk.Student;
 import repository.*;
 import service.StudentResultService;
 import service.StudentService;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Main {

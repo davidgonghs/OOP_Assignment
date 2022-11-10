@@ -1,6 +1,6 @@
 package repository;
 
-import domain.srk.StudentResult;
+import domain.StudentResult;
 
 import java.util.ArrayList;
 

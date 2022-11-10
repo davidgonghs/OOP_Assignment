@@ -1,9 +1,8 @@
 package service;
 
-import domain.srk.StudentResult;
+import domain.StudentResult;
 import repository.StudentRepository;
 import repository.StudentResultRepository;
-import repository.StudentResultRepositoryImpl;
 import tool.CommonTool;
 
 import java.util.*;
