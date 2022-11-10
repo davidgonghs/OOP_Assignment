@@ -115,8 +115,10 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
             for (int i = 0; i < studentResultList.size(); i++) {
                 if (studentResultList.get(i).getCode().equals(csvClass.getCode())) {
                     studentResultList.set(i, csvClass);
+                    System.out.println("Student result updated successfully");
                 }
             }
+            studentResultMap.put(csvClass.getStudentNumber(), studentResultList);
         }
     }
 

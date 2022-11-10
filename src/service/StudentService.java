@@ -36,6 +36,7 @@ public class StudentService implements Service {
 
             System.out.println("Please choose menu: ");
             int choose = scanner.nextInt();
+            scanner.nextLine();
             System.out.println();
 
             switch (choose){
@@ -52,16 +53,19 @@ public class StudentService implements Service {
                 case 3:
                     //add
                     add();
+                    save();
                     System.out.println();
                     break;
                 case 4:
                     //update
                     update();
+                    save();
                     System.out.println();
                     break;
                 case 5:
                     //delete
                     delete();
+                    save();
                     System.out.println();
                     break;
                 case 6:
@@ -86,6 +90,7 @@ public class StudentService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
         Student student = studentRepository.search(studentNumber);
         if (student != null) {
             System.out.println(student);
@@ -107,27 +112,31 @@ public class StudentService implements Service {
         System.out.println("Enter Student Number (EX.A0000): ");
         //check student number  first character is letter   and  length is 5
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
         while (!studentNumber.matches("[A-Z]{1}[0-9]{4}")){
             System.out.println("Please input correct student number");
             studentNumber = scanner.nextLine();
+            scanner.nextLine();
         }
 
         System.out.println("Enter Student Name: ");
         String name = scanner.nextLine();
-
+        scanner.nextLine();
         System.out.println("Enter Student Age: ");
         int age = scanner.nextInt();
-
+        scanner.nextLine();
         System.out.println("Enter Student Phone: ");
         //check phone number is it format is malaysia phone number
-        String phone = scanner.next();
+        String phone = scanner.nextLine();
         while (!phone.matches("^(01)[0-46-9]-*[0-9]{7,8}$")){
             System.out.println("Please input correct phone number");
-            phone = scanner.next();
+            phone = scanner.nextLine();
+            scanner.nextLine();
         }
 
         System.out.println("Enter Student Programme: ");
-        String programme = scanner.next();
+        String programme = scanner.nextLine();
+        scanner.nextLine();
         programme.toUpperCase();
 
         String email = studentNumber+"@student.firstcity.edu.my";
@@ -142,28 +151,33 @@ public class StudentService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Student Number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
         //check student number is it exist
         while (studentRepository.search(studentNumber) != null){
             System.out.println("Can't find student");
             studentNumber = scanner.nextLine();
+            scanner.nextLine();
         }
 
         System.out.println("Enter Student Name: ");
         String name = scanner.nextLine();
-
+        scanner.nextLine();
         System.out.println("Enter Student Age: ");
         int age = scanner.nextInt();
-
+        scanner.nextLine();
         System.out.println("Enter Student Phone: ");
         String phone = scanner.nextLine();
+        scanner.nextLine();
         while (!phone.matches("^(01)[0-46-9]-*[0-9]{7,8}$")){
             System.out.println("Please input correct phone number");
-            phone = scanner.next();
+            phone = scanner.nextLine();
+            scanner.nextLine();
         }
 
 
         System.out.println("Enter Student Programme: ");
-        String programme = scanner.next();
+        String programme = scanner.nextLine();
+        scanner.nextLine();
         programme.toUpperCase();
 
         String email = studentNumber+"@student.firstcity.edu.my";
@@ -178,6 +192,7 @@ public class StudentService implements Service {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter Student Number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
         studentRepository.delete(studentNumber);
     }
 

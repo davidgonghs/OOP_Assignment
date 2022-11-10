@@ -42,6 +42,8 @@ public class StudentResultService implements Service{
 
             System.out.println("Please choose menu: ");
             int choose = scanner.nextInt();
+
+
             System.out.println();
 
             switch (choose){
@@ -58,16 +60,19 @@ public class StudentResultService implements Service{
                 case 3:
                     //add
                     add();
+                    save();
                     System.out.println();
                     break;
                 case 4:
                     //update
                     update();
+                    save();
                     System.out.println();
                     break;
                 case 5:
                     //delete
                     delete();
+                    save();
                     System.out.println();
                     break;
                 case 6:
@@ -91,6 +96,8 @@ public class StudentResultService implements Service{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
+
         ArrayList<StudentResult> studentResults = studentResultRepository.search(studentNumber);
         if (studentResults == null){
             System.out.println("No result found");
@@ -142,29 +149,38 @@ public class StudentResultService implements Service{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
+
         //check student number
         while (studentRepository.search(studentNumber) == null){
             System.out.println("Student number not found!");
             System.out.println("Please input student number: ");
             studentNumber = scanner.nextLine();
+            scanner.nextLine();
         }
 
 
         System.out.println("Please input semester: ");
         int semester = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.println("Please input code: ");
         String code = scanner.nextLine();
+        scanner.nextLine();
 
         System.out.println("Please input module: ");
         String module = scanner.nextLine();
+        scanner.nextLine();
 
         System.out.println("Please input marks: ");
         double marks = scanner.nextDouble();
+        scanner.nextLine();
+
         //check marks is valid
         while (!CommonTool.isMarksValid(marks)){
             System.out.println("Please input valid marks: ");
             marks = scanner.nextDouble();
+            scanner.nextLine();
         }
 
         String grade = CommonTool.getGrade(marks);
@@ -185,36 +201,41 @@ public class StudentResultService implements Service{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
+
         //check student number
         while (studentRepository.search(studentNumber) == null){
             System.out.println("Student number not found!");
             System.out.println("Please input student number: ");
             studentNumber = scanner.nextLine();
+            scanner.nextLine();
         }
 
         System.out.println("Please input semester: ");
         int semester = scanner.nextInt();
+        scanner.nextLine();
 
         System.out.println("Please input code: ");
         String code = scanner.nextLine();
+        scanner.nextLine();
 
         System.out.println("Please input module: ");
         String module = scanner.nextLine();
-
+        scanner.nextLine();
 
         System.out.println("Please input marks: ");
         double marks = scanner.nextDouble();
-
+        scanner.nextLine();
         String grade = CommonTool.getGrade(marks);
 
         System.out.println("Please input credit: ");
         double credit = scanner.nextDouble();
-
+        scanner.nextLine();
         double gradePoints = CommonTool.getGradePoints(grade);
         double gpaPoint = credit * gradePoints;
 
         StudentResult studentResult = new StudentResult(studentNumber,semester,code,module,marks,grade,credit,gpaPoint);
-
+        System.out.println(studentResult);
         studentResultRepository.update(studentResult);
     }
 
@@ -223,9 +244,13 @@ public class StudentResultService implements Service{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please input student number: ");
         String studentNumber = scanner.nextLine();
+        scanner.nextLine();
+
         //get subject code
         System.out.println("Please input subject code: ");
         String code = scanner.nextLine();
+        scanner.nextLine();
+
         studentResultRepository.delete(studentNumber,code);
 
     }
