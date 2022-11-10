@@ -14,6 +14,17 @@ public class StudentResult implements CSVClass {
     public StudentResult() {
     }
 
+    //constructor
+    public StudentResult(String studentNumber, String subjectCode, String subjectName, String year, String semester, String marks, String grade) {
+        this.studentNumber = studentNumber;
+        this.year = Integer.parseInt(year);
+        this.semester = Integer.parseInt(semester);
+        this.subjectName = subjectName;
+        this.subjectCode = subjectCode;
+        this.marks = Double.parseDouble(marks);
+        this.grade = grade;
+    }
+
     public String getStudentNumber() {
         return studentNumber;
     }

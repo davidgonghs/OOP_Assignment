@@ -1,5 +1,6 @@
 import domain.srk.Student;
 import repository.*;
+import service.StudentResultService;
 import service.StudentService;
 
 import java.util.HashMap;
@@ -9,6 +10,17 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
+
+        //initialize
+        StudentRepository studentRepository = new StudentRepositoryImpl();
+        studentRepository.initialize();
+        StudentResultRepository studentResultRepository = new StudentResultRepositoryImpl();
+        studentResultRepository.initialize();
+
+
+        StudentService studentService = new StudentService(studentRepository);
+        StudentResultService studentResultService = new StudentResultService(studentResultRepository, studentRepository);
+
         //show menu
         //i. Class venues booking
         //ii. Sports facilities booking
@@ -29,8 +41,6 @@ public class Main {
             switch (choose){
                 case 1:
                     //manage student
-                    StudentService studentService = new StudentService();
-                    studentService.initialize();
                     studentService.process();
                     System.out.println();
                     break;

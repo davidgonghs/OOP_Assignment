@@ -1,12 +1,24 @@
 package service;
 
+import domain.srk.StudentResult;
+import repository.StudentRepository;
+import repository.StudentResultRepository;
 import repository.StudentResultRepositoryImpl;
+import tool.CommonTool;
 
 import java.util.Scanner;
 
 public class StudentResultService implements Service{
 
-    public StudentResultRepositoryImpl studentResultRepository=new StudentResultRepositoryImpl();
+    private StudentResultRepository studentResultRepository;
+
+    private StudentRepository studentRepository;
+
+    //constructor
+    public StudentResultService(StudentResultRepository studentResultRepository, StudentRepository studentRepository) {
+        this.studentResultRepository = studentResultRepository;
+        this.studentRepository = studentRepository;
+    }
 
 
     @Override
@@ -17,10 +29,6 @@ public class StudentResultService implements Service{
         }
     }
 
-    @Override
-    public void initialize() {
-        studentResultRepository.initialize();
-    }
 
     @Override
     public void process() {
@@ -83,21 +91,85 @@ public class StudentResultService implements Service{
 
     @Override
     public void showAll() {
-
+        studentResultRepository.showAll();
     }
 
     @Override
     public void add() {
+        //get user input then ceate new StudentResult object
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input student number: ");
+        String studentNumber = scanner.nextLine();
+        //check student number is exist
+        if (studentRepository.search(studentNumber) == null){
+            System.out.println("Can not find student with Student Number: " + studentNumber);
+            return;
+        }
 
+        System.out.println("Please input subject code: ");
+        String subjectCode = scanner.nextLine();
+
+        System.out.println("Please input subject name: ");
+        String subjectName = scanner.nextLine();
+
+        System.out.println("Please input year: ");
+        String year = scanner.nextLine();
+
+        System.out.println("Please input semester: ");
+        String semester = scanner.nextLine();
+
+        System.out.println("Please input marks: ");
+        String marks = scanner.nextLine();
+
+        String grade = CommonTool.getGrade(Double.parseDouble(marks));
+
+        StudentResult studentResult = new StudentResult(studentNumber,subjectCode,subjectName,year,semester,marks,grade);
+        studentResultRepository.add(studentResult);
     }
 
     @Override
     public void update() {
+        //get user input then ceate new StudentResult object
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input student number: ");
+        String studentNumber = scanner.nextLine();
+        //check student number is exist
+        if (studentRepository.search(studentNumber) == null){
+            System.out.println("Can not find student with Student Number: " + studentNumber);
+            return;
+        }
+
+        System.out.println("Please input subject code: ");
+        String subjectCode = scanner.nextLine();
+
+        System.out.println("Please input subject name: ");
+        String subjectName = scanner.nextLine();
+
+        System.out.println("Please input year: ");
+        String year = scanner.nextLine();
+
+        System.out.println("Please input semester: ");
+        String semester = scanner.nextLine();
+
+        System.out.println("Please input marks: ");
+        String marks = scanner.nextLine();
+
+        String grade = CommonTool.getGrade(Double.parseDouble(marks));
+
+        StudentResult studentResult = new StudentResult(studentNumber,subjectCode,subjectName,year,semester,marks,grade);
+        studentResultRepository.update(studentResult);
 
     }
 
     @Override
     public void delete() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input student number: ");
+        String studentNumber = scanner.nextLine();
+        //get subject code
+        System.out.println("Please input subject code: ");
+        String subjectCode = scanner.nextLine();
+        studentResultRepository.delete(studentNumber,subjectCode);
 
     }
 

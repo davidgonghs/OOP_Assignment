@@ -4,9 +4,6 @@ public interface Service {
     //show menu function
     public void showMenu();
 
-    //initialize function
-    public void initialize();
-
     public void process();
 
     //search

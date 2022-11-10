@@ -1,18 +1,22 @@
 package service;
 
 import domain.srk.Student;
+import repository.StudentRepository;
 import repository.StudentRepositoryImpl;
 
 import java.util.Scanner;
 
 public class StudentService implements Service {
 
-    public StudentRepositoryImpl studentRepository=new StudentRepositoryImpl();
+    private StudentRepository studentRepository;
 
-    //initialize function
-    public void initialize() {
-        studentRepository.initialize();
+    //constructor
+    public StudentService(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
     }
+
+
+
     //show menu function
     @Override
     public void showMenu() {

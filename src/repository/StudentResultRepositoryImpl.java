@@ -105,6 +105,7 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
 
     @Override
     public void update(StudentResult csvClass) {
+
         //update student result to student result map
         if (studentResultMap.containsKey(csvClass.getStudentNumber())) {
             List<StudentResult> studentResultList = studentResultMap.get(csvClass.getStudentNumber());
@@ -117,12 +118,12 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
     }
 
     @Override
-    public void delete(StudentResult studentResult) {
+    public void delete(String studentNumber,String subjectCode) {
         //delete student result from student result map
-        if (studentResultMap.containsKey(studentResult.getStudentNumber())) {
-            List<StudentResult> studentResultList = studentResultMap.get(studentResult.getStudentNumber());
+        if (studentResultMap.containsKey(studentNumber)) {
+            List<StudentResult> studentResultList = studentResultMap.get(studentNumber);
             for (int i = 0; i < studentResultList.size(); i++) {
-                if (studentResultList.get(i).getSubjectCode().equals(studentResult.getSubjectCode())) {
+                if (studentResultList.get(i).getSubjectCode().equals(subjectCode)) {
                     studentResultList.remove(i);
                 }
             }
