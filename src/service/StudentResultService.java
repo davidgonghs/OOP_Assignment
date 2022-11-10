@@ -6,10 +6,7 @@ import repository.StudentResultRepository;
 import repository.StudentResultRepositoryImpl;
 import tool.CommonTool;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 
 public class StudentResultService implements Service{
 
@@ -120,13 +117,19 @@ public class StudentResultService implements Service{
                     semesterCreditMap.put(studentResult.getSemester(), studentResult.getCredit());
                 }
             }
+
+
+            //sort semester with key
+            ArrayList<Integer> semesterList = new ArrayList<>(semesterGpaMap.keySet());
+            Collections.sort(semesterList);
+            for (Integer semester : semesterList) {
+                double semesterGpa = semesterGpaMap.get(semester) / semesterCreditMap.get(semester);
+                System.out.println("Semester " + semester + " GPA: " + semesterGpa);
+            }
+
             double cgpa = totalGpaPoint / totalCredit;
             System.out.println("CGPA: " + cgpa);
-            //get semester gpa
-            for (Map.Entry<Integer, Double> entry : semesterGpaMap.entrySet()) {
-                double semesterGpa = entry.getValue() / semesterCreditMap.get(entry.getKey());
-                System.out.println("Semester " + entry.getKey() + " GPA: " + semesterGpa);
-            }
+
         }
     }
 
