@@ -24,7 +24,6 @@ public class StudentResultService implements Service{
     public void showMenu() {
         String[] menu = {"1.Search Student Result", "2.Show All Student Result", "3.Add Student Result", "4.Update Student Result", "5.Delete Student Result","6.Exit"};
 
-
         for (String s : menu) {
             System.out.println(s);
         }
