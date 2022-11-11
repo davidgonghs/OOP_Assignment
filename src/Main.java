@@ -1,4 +1,5 @@
 import repository.*;
+import service.ClassVenuesService;
 import service.StudentResultService;
 import service.StudentService;
 
@@ -13,10 +14,14 @@ public class Main {
         studentRepository.initialize();
         StudentResultRepository studentResultRepository = new StudentResultRepositoryImpl();
         studentResultRepository.initialize();
+        ClassVenuesRepository classVenuesRepository = new ClassVenuesRepositoryImpl();
+        classVenuesRepository.initialize();
 
 
         StudentService studentService = new StudentService(studentRepository);
         StudentResultService studentResultService = new StudentResultService(studentResultRepository, studentRepository);
+        ClassVenuesService classVenuesService = new ClassVenuesService(studentRepository, classVenuesRepository);
+
 
         //show menu
         String[] menu = {"1.Manage Student","2.Class venues booking", "3.Sports facilities booking","4.Students’ results keeping", "5.Exit"};
@@ -39,6 +44,7 @@ public class Main {
                     break;
                 case 2:
                     //class venues booking
+                    classVenuesService.process();
                     System.out.println();
                     break;
                 case 3:
