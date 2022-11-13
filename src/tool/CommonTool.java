@@ -1,3 +1,19 @@
+//<editor-fold desc="File Description">
+// DESCRIPTION :
+//       This file serves as a place to store static functions
+//
+//  PUBLIC FUNCTIONS :
+//       isMarksValid(), getGrade(), getGradePoints()
+//
+//  NOTES :
+//       None
+//
+//  AUTHOR :    B1146 DAVID GONG
+//
+//  CHANGES :
+//       None
+//</editor-fold>
+
 package tool;
 
 public class CommonTool {

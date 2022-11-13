@@ -1,3 +1,19 @@
+//<editor-fold desc="File Description">
+// DESCRIPTION :
+//       This file serves as an object blueprint
+//
+//  PUBLIC FUNCTIONS :
+//       None
+//
+//  NOTES :
+//       None
+//
+//  AUTHOR :    B1499 JEREMY PUN
+//
+//  CHANGES :
+//       None
+//</editor-fold>
+
 package domain;
 
 public class ClassVenues implements CSVClass {

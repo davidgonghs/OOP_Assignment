@@ -1,3 +1,19 @@
+//<editor-fold desc="File Description">
+// DESCRIPTION :
+//       This file serves as the entry point of the program where the execution begins
+//
+//  PUBLIC FUNCTIONS :
+//       None
+//
+//  NOTES :
+//       None
+//
+//  AUTHOR :    B1146 DAVID GONG
+//
+//  CHANGES :
+//       None
+//</editor-fold>
+
 import repository.*;
 import service.ClassVenuesService;
 import service.StudentResultService;
