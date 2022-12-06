@@ -7,7 +7,7 @@ import tool.CommonTool;
 
 import java.util.*;
 
-public class StudentResultService implements Service{
+public class StudentResultService extends Service{
 
     private StudentResultRepository studentResultRepository;
 

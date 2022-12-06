@@ -1,26 +1,26 @@
 package service;
 
-public interface Service {
+ abstract class Service {
     //show menu function
-    public void showMenu();
+    public void showMenu(){}
 
-    public void process();
+    public void process(){}
 
     //search
-    public void search();
+    public void search(){}
 
     //show all
-    public void showAll();
+    public void showAll(){}
 
     //add
-    public void add();
+    public void add(){}
 
     //update
-    public void update();
+    public void update(){}
 
     //delete
-    public void delete();
+    public void delete(){}
 
     //save function
-    public void save();
+    public void save(){}
 }

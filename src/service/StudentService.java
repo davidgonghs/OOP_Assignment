@@ -5,7 +5,7 @@ import repository.StudentRepository;
 
 import java.util.Scanner;
 
-public class StudentService implements Service {
+public class StudentService extends Service {
 
     private StudentRepository studentRepository;
 

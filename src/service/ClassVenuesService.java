@@ -19,7 +19,7 @@ package service;
 import repository.ClassVenuesRepository;
 import repository.StudentRepository;
 
-public class ClassVenuesService implements Service{
+public class ClassVenuesService extends Service{
 
     private StudentRepository studentRepository;
 
