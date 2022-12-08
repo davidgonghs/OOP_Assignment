@@ -1,19 +1,3 @@
-//<editor-fold desc="File Description">
-// DESCRIPTION :
-//       This file serves as a place to store functions
-//
-//  PUBLIC FUNCTIONS :
-//       None
-//
-//  NOTES :
-//       None
-//
-//  AUTHOR :    B1499 JEREMY PUN
-//
-//  CHANGES :
-//       None
-//</editor-fold>
-
 package service;
 
 import repository.ClassVenuesRepository;
