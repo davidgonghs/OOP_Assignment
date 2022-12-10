@@ -79,7 +79,7 @@ public class BookClassVenuesRepositoryImpl implements BookClassVenuesRepository 
 
 
     @Override
-    public List<BookClassVenue> searchByCode(String keyword) {
+    public ArrayList<BookClassVenue> searchByCode(String keyword) {
         if(  bookClassVenuesMap.containsKey(keyword)) {
             return bookClassVenuesMap.get(keyword);
         }
@@ -88,8 +88,8 @@ public class BookClassVenuesRepositoryImpl implements BookClassVenuesRepository 
     }
 
     @Override
-    public List<BookClassVenue> searchByStudentId(String keyword) {
-        List<BookClassVenue> bookClassVenueList = new ArrayList<>();
+    public ArrayList<BookClassVenue> searchByStudentId(String keyword) {
+        ArrayList<BookClassVenue> bookClassVenueList = new ArrayList<>();
         for (Map.Entry<String, ArrayList<BookClassVenue>> entry : bookClassVenuesMap.entrySet()) {
             for (BookClassVenue bookClassVenue : entry.getValue()) {
                 if (bookClassVenue.getStudentId().equals(keyword)) {

@@ -18,7 +18,21 @@ public class ClassVenuesService extends Service{
 
     @Override
     public void showMenu() {
+        String[] menu = {"1.Search Class Venue", "2.Show All Class Venue",
+                "3.Add Class Venue", "4.Update Class Venue",
+                "5.Delete Class Venue",
 
+                "6.Search Booked Class Venue",
+                "7.Show All Booked Class Venue","8.Book Class Venue",
+                "9.Cancel Book Class Venue",
+
+                "0.Back to Main Menu"};
+
+
+
+        for (String s : menu) {
+            System.out.println(s);
+        }
     }
 
     @Override

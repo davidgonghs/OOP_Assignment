@@ -38,7 +38,7 @@ public class SportFacilitiesService extends Service{
                 "7.Show All Booked Sport Facilities","8.Book Sport Facilities",
                 "9.Cancel Book Sport Facilities",
 
-                "0.Exit"};
+                "0.Back to Main Menu"};
 
         for (String s : menu) {
             System.out.println(s);

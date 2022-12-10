@@ -19,7 +19,7 @@ public class StudentService extends Service {
     //show menu function
     @Override
     public void showMenu() {
-        String[] menu = {"1.Search Student", "2.Show All Student", "3.Add Student", "4.Update Student", "5.Delete Student","6.Exit"};
+        String[] menu = {"1.Search Student", "2.Show All Student", "3.Add Student", "4.Update Student", "5.Delete Student","6.Back to Main Menu"};
         for (String s : menu) {
             System.out.println(s);
         }

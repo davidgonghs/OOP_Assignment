@@ -22,7 +22,7 @@ public class StudentResultService extends Service{
 
     @Override
     public void showMenu() {
-        String[] menu = {"1.Search Student Result", "2.Show All Student Result", "3.Add Student Result", "4.Update Student Result", "5.Delete Student Result","6.Exit"};
+        String[] menu = {"1.Search Student Result", "2.Show All Student Result", "3.Add Student Result", "4.Update Student Result", "5.Delete Student Result","6.Back to Main Menu"};
 
         for (String s : menu) {
             System.out.println(s);
