@@ -16,7 +16,25 @@
 
 package tool;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CommonTool {
+
+    private static SimpleDateFormat sdf = new SimpleDateFormat( " yyyy-MM-dd HH:mm:ss " );
+
+    public static String convertDateToString(Date date){
+        return sdf.format(date);
+    }
+
+    public static Date convertStringToDate(String date){
+        try {
+            return sdf.parse(date);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     //isMarksValid
     public static boolean isMarksValid(double marks){
