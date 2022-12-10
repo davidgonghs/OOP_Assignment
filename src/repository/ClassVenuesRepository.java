@@ -18,6 +18,8 @@ package repository;
 import domain.ClassVenue;
 
 public interface ClassVenuesRepository extends Repository {
+
+    public ClassVenue search(String code, String name);
     public void add(ClassVenue csvClass);
     public void update(ClassVenue csvClass);
     public void delete(String code);

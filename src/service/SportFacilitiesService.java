@@ -171,7 +171,7 @@ public class SportFacilitiesService extends Service{
                 break;
         }
 
-        if(bookSportFacilities == null){
+        if(bookSportFacilities == null || bookSportFacilities.size() == 0){
             System.out.println("Not found!");
         } else {
             for (BookSportFacility bookSportFacility : bookSportFacilities) {
@@ -202,7 +202,7 @@ public class SportFacilitiesService extends Service{
         System.out.println("Please input name: ");
         String name = scanner.next();
         System.out.println("Please input status(0.can not use, 1.can use): ");
-        boolean status = scanner.nextInt()==1?true:false;
+        boolean status = scanner.nextInt()==1;
 
         SportFacility sportFacility = new SportFacility(code,name,status);
         sportFacilitiesRepository.add(sportFacility);

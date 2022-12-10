@@ -16,6 +16,20 @@ public class ClassVenuesRepositoryImpl implements ClassVenuesRepository {
     private Map<String, ClassVenue> venueMap = new HashMap<>();
 
     @Override
+    public ClassVenue search(String code, String name) {
+        if(code != null){
+            return venueMap.get(code);
+        }else{
+            for(ClassVenue venue : venueMap.values()){
+                if(venue.getClassVenuesName().equals(name)){
+                    return venue;
+                }
+            }
+        }
+        return null;
+    }
+
+    @Override
     public void add(ClassVenue csvClass) {
         venueMap.put(csvClass.getCode(), csvClass);
     }

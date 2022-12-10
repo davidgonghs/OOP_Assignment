@@ -15,6 +15,8 @@ public class Main {
         studentResultRepository.initialize();
         ClassVenuesRepository classVenuesRepository = new ClassVenuesRepositoryImpl();
         classVenuesRepository.initialize();
+        BookClassVenuesRepository bookClassVenuesRepository = new BookClassVenuesRepositoryImpl();
+        bookClassVenuesRepository.initialize();
         SportFacilitiesRepository sportFacilitiesRepository = new SportFacilitiesRepositoryImpl();
         sportFacilitiesRepository.initialize();
         BookSportFacilitiesRepository bookSportFacilitiesRepository = new BookSportFacilitiesRepositoryImpl();
@@ -22,9 +24,10 @@ public class Main {
 
 
 
+
         StudentService studentService = new StudentService(studentRepository);
         StudentResultService studentResultService = new StudentResultService(studentResultRepository, studentRepository);
-        ClassVenuesService classVenuesService = new ClassVenuesService(studentRepository, classVenuesRepository);
+        ClassVenuesService classVenuesService = new ClassVenuesService(studentRepository, classVenuesRepository, bookClassVenuesRepository);
         SportFacilitiesService sportFacilitiesService = new SportFacilitiesService(sportFacilitiesRepository, bookSportFacilitiesRepository, studentRepository);
 
 
