@@ -1,6 +1,7 @@
-package repository;
+package repository.impl;
 
 import domain.ClassVenue;
+import repository.BookClassVenuesRepository;
 
 public class BookClassVenuesRepositoryImpl implements BookClassVenuesRepository {
 

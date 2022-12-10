@@ -1,4 +1,4 @@
-package repository;
+package repository.impl;
 
 
 
@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import domain.Student;
+import repository.StudentRepository;
 
 public class StudentRepositoryImpl implements StudentRepository {
     private static String studentDataPath = "src/data/student.csv";

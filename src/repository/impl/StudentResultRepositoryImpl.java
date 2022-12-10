@@ -1,6 +1,7 @@
-package repository;
+package repository.impl;
 
 import domain.StudentResult;
+import repository.StudentResultRepository;
 
 import java.io.*;
 import java.util.ArrayList;

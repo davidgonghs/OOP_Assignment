@@ -1,7 +1,8 @@
-package repository;
+package repository.impl;
 
 import domain.SportFacility;
 import domain.Student;
+import repository.SportFacilitiesRepository;
 
 import java.io.*;
 import java.util.HashMap;

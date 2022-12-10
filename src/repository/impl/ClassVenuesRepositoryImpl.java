@@ -1,7 +1,8 @@
-package repository;
+package repository.impl;
 
 import domain.ClassVenue;
 import domain.Student;
+import repository.ClassVenuesRepository;
 
 import java.util.HashMap;
 import java.util.Map;

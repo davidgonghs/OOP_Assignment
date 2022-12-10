@@ -1,7 +1,8 @@
-package repository;
+package repository.impl;
 
 import domain.BookSportFacility;
 import domain.Student;
+import repository.BookSportFacilitiesRepository;
 
 import java.io.*;
 import java.util.ArrayList;
