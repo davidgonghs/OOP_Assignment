@@ -1,5 +1,6 @@
 package repository;
 
+import domain.BookSportFacility;
 import domain.Student;
 
 import java.io.*;
@@ -11,26 +12,51 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
 
     private static String bookSportFacilitiesDataPath = "src/data/bookSportFacilities.csv";
 
-    Map<String, ArrayList<String>> bookSportFacilitiesMap = new HashMap<>();
+    Map<String, ArrayList<BookSportFacility>> bookSportFacilitiesMap = new HashMap<>();
 
     @Override
     public void SearchByFacilityCode(String keyword) {
-
+        if (bookSportFacilitiesMap.containsKey(keyword)) {
+            for (BookSportFacility bookSportFacility : bookSportFacilitiesMap.get(keyword)) {
+                System.out.println(bookSportFacility.toString());
+            }
+        } else {
+            System.out.println("No record found");
+        }
     }
 
     @Override
     public void SearchByStudentId(String keyword) {
-
+        for (Map.Entry<String, ArrayList<BookSportFacility>> entry : bookSportFacilitiesMap.entrySet()) {
+            for (BookSportFacility bookSportFacility : entry.getValue()) {
+                if (bookSportFacility.getSudentId().equals(keyword)) {
+                    System.out.println(bookSportFacility.toString());
+                }
+            }
+        }
     }
 
     @Override
-    public void book(String studentNumber, String code) {
-
+    public void book(BookSportFacility bookSportFacility) {
+        if (bookSportFacilitiesMap.containsKey(bookSportFacility.getSportFacilityCode())) {
+            bookSportFacilitiesMap.get(bookSportFacility.getSportFacilityCode()).add(bookSportFacility);
+        } else {
+            ArrayList<BookSportFacility> bookSportFacilities = new ArrayList<>();
+            bookSportFacilities.add(bookSportFacility);
+            bookSportFacilitiesMap.put(bookSportFacility.getSportFacilityCode(), bookSportFacilities);
+        }
     }
 
     @Override
-    public void cancel(String studentNumber, String code) {
-
+    public void cancel(String sudentId, String code) {
+        if (bookSportFacilitiesMap.containsKey(code)) {
+            for (BookSportFacility bookSportFacility : bookSportFacilitiesMap.get(code)) {
+                if (bookSportFacility.getSudentId().equals(sudentId)) {
+                    bookSportFacilitiesMap.get(code).remove(bookSportFacility);
+                    break;
+                }
+            }
+        }
     }
 
     @Override
@@ -43,10 +69,16 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
                     i++;
                     continue;
                 }
-                String[] data = line.split(",");
-                String code = data[0];
-                String studentNumber = data[1];
-                //code,studentName,startTime,endTime
+                BookSportFacility bookSportFacility = new BookSportFacility();
+                bookSportFacility.fromCSV(line);
+
+                if (bookSportFacilitiesMap.containsKey(bookSportFacility.getSportFacilityCode())) {
+                    bookSportFacilitiesMap.get(bookSportFacility.getSportFacilityCode()).add(bookSportFacility);
+                } else {
+                    ArrayList<BookSportFacility> bookSportFacilities = new ArrayList<>();
+                    bookSportFacilities.add(bookSportFacility);
+                    bookSportFacilitiesMap.put(bookSportFacility.getSportFacilityCode(), bookSportFacilities);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,11 +87,31 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
 
     @Override
     public void showAll() {
-
+        for (String key : bookSportFacilitiesMap.keySet()) {
+            System.out.println("Sport Facility Code: " + key);
+            for (BookSportFacility bookSportFacility : bookSportFacilitiesMap.get(key)) {
+                System.out.println(bookSportFacility.toCSV());
+            }
+        }
     }
 
     @Override
     public void save() {
-
+        try {
+            File file = new File(bookSportFacilitiesDataPath);
+            BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
+            //studentNumber + "," + name + "," + age + ","  + email + "," + phone + "," + programme;
+            //write header
+            writeText.write("code,facilityName,status");
+            for (Map.Entry<String, ArrayList<BookSportFacility>> entry : bookSportFacilitiesMap.entrySet()) {
+                for (BookSportFacility bookSportFacility : entry.getValue()) {
+                    writeText.newLine();
+                    writeText.write(bookSportFacility.toCSV());
+                }
+            }
+            writeText.close();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

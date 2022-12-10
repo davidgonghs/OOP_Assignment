@@ -5,29 +5,30 @@ import tool.CommonTool;
 import java.util.Date;
 
 public class BookSportFacility implements CSVClass {
-    private String studentNumber;
+    //id,code,studentId,startTime,endTime
+    private int id;
     private String sportFacilityCode;
+    private String studentId;
     private Date startTime;
     private Date endTime;
-
-
 
     public BookSportFacility() {
     }
 
-    public BookSportFacility(String studentNumber, String sportFacilityCode, Date startTime, Date endTime) {
-        this.studentNumber = studentNumber;
+    public BookSportFacility(int id, String sportFacilityCode, String studentId, Date startTime, Date endTime) {
+        this.id = id;
         this.sportFacilityCode = sportFacilityCode;
+        this.studentId = studentId;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
-    public String getStudentNumber() {
-        return studentNumber;
+    public int getId() {
+        return id;
     }
 
-    public void setStudentNumber(String studentNumber) {
-        this.studentNumber = studentNumber;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getSportFacilityCode() {
@@ -36,6 +37,14 @@ public class BookSportFacility implements CSVClass {
 
     public void setSportFacilityCode(String sportFacilityCode) {
         this.sportFacilityCode = sportFacilityCode;
+    }
+
+    public String getSudentId() {
+        return studentId;
+    }
+
+    public void setStudentNumber(String studentId) {
+        this.studentId = studentId;
     }
 
     public Date getStartTime() {
@@ -54,17 +63,19 @@ public class BookSportFacility implements CSVClass {
         this.endTime = endTime;
     }
 
+
     @Override
     public String toCSV() {
-        return studentNumber + "," + sportFacilityCode + "," + CommonTool.convertDateToString(startTime) + "," + CommonTool.convertDateToString(endTime);
+        return id + "," + sportFacilityCode + "," + studentId + "," + CommonTool.convertDateToString(startTime) + "," + CommonTool.convertDateToString(endTime);
     }
 
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");
-        studentNumber = data[0];
+        id = Integer.parseInt(data[0]);
         sportFacilityCode = data[1];
-        startTime = CommonTool.convertStringToDate(data[2]);
-        endTime = CommonTool.convertStringToDate(data[3]);
+        studentId = data[2];
+        startTime = CommonTool.convertStringToDate(data[3]);
+        endTime = CommonTool.convertStringToDate(data[4]);
     }
 }
