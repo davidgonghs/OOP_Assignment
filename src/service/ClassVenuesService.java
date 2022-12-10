@@ -5,6 +5,7 @@ import domain.ClassVenue;
 import repository.BookClassVenuesRepository;
 import repository.ClassVenuesRepository;
 import repository.StudentRepository;
+import tool.CommonTool;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -265,7 +266,41 @@ public class ClassVenuesService extends Service{
 
     //bookClassVenue
     public void bookClassVenue(){
-        
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input student ID: ");
+        String studentID = scanner.next();
+        while (studentRepository.search(studentID) == null){
+            System.out.println("Student ID is not exist, please input again!");
+            studentID = scanner.next();
+        }
+
+        System.out.println("Please input Class Venue code: ");
+        String code = scanner.next();
+
+        while (classVenuesRepository.search(code, null) == null){
+            System.out.println("Class Venue code is not exist, please input again!");
+            code = scanner.next();
+        }
+
+        System.out.println("Please input start time (yyyy-MM-dd HH:mm:ss): ");
+        String start = scanner.next();
+
+        System.out.println("Please input end time (yyyy-MM-dd HH:mm:ss): ");
+        String end = scanner.next();
+
+        BookClassVenue bookClassVenue = new BookClassVenue(studentID, code, CommonTool.convertStringToDate(start), CommonTool.convertStringToDate(end));
+        bookClassVenuesRepository.book(bookClassVenue);
+        System.out.println("Book Class Venue successfully!");
+
+    }
+
+    //cancelBookClassVenue
+    public void cancelBookClassVenue(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input book id: ");
+        int id = scanner.nextInt();
+        bookClassVenuesRepository.cancel(id);
+        System.out.println("Cancel Book Class Venue successfully!");
     }
 
 

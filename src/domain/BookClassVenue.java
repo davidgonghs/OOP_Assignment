@@ -14,6 +14,13 @@ public class BookClassVenue implements CSVClass {
     public BookClassVenue() {
     }
 
+    public BookClassVenue(String venueCode, String studentId, Date startTime, Date endTime) {
+        this.venueCode = venueCode;
+        this.studentId = studentId;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public BookClassVenue(int id, String venueCode, String studentId, Date startTime, Date endTime) {
         this.id = id;
         this.venueCode = venueCode;
