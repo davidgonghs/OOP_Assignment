@@ -1,5 +1,6 @@
 package service;
 
+import domain.SportFacility;
 import repository.BookSportFacilitiesRepository;
 import repository.SportFacilitiesRepository;
 import repository.StudentRepository;
@@ -24,7 +25,13 @@ public class SportFacilitiesService extends Service{
     public void showMenu(){
         String[] menu = {"1.Search Sport Facilities", "2.Show All Sport Facilities",
                 "3.Add Sport Facilities", "4.Update Sport Facilities",
-                "5.Delete Sport Facilities","6.Book Sport Facilities","7.Cancel Book Sport Facilities","8.Exit"};
+                "5.Delete Sport Facilities",
+
+                "6.Search Booked Sport Facilities",
+                "7.Show All Booked Sport Facilities","8.Book Sport Facilities",
+                "9.Cancel Book Sport Facilities",
+
+                "0.Exit"};
 
         for (String s : menu) {
             System.out.println(s);
@@ -47,12 +54,12 @@ public class SportFacilitiesService extends Service{
             switch (choose) {
                 case 1:
                     //search
-                    search();
+                    searchSportFacilities();
                     System.out.println();
                     break;
                 case 2:
                     //show all
-                    showAll();
+                    showAllSportFacilities();
                     System.out.println();
                     break;
                 case 3:
@@ -77,11 +84,16 @@ public class SportFacilitiesService extends Service{
                     break;
                 case 7:
                     //cancel book
-                    cancelBookSportFacilities();
+                    showAllBookSportFacilities();
                     System.out.println();
                     break;
                 case 8:
                     //exit
+                    break;
+                case 9:
+                    break;
+                case 0:
+                    save();
                     return;
                 default:
                     System.out.println("Please choose correct menu!");
@@ -98,8 +110,8 @@ public class SportFacilitiesService extends Service{
         System.out.println("Please choose search type: 1.Code 2.Name");
         Scanner scanner = new Scanner(System.in);
         int choose = scanner.nextInt();
-        String code = "";
-        String name = "";
+        String code = null;
+        String name = null;
 
         switch (choose){
             case 1:
@@ -118,10 +130,12 @@ public class SportFacilitiesService extends Service{
         }
 
 
-
-
-
-
+        SportFacility sportFacility =  sportFacilitiesRepository.search(code,name);
+        if(sportFacility == null){
+            System.out.println("Not found!");
+        } else {
+            System.out.println(sportFacility);
+        }
     }
 
     //search book sport facilities by student number
@@ -134,7 +148,26 @@ public class SportFacilitiesService extends Service{
     }
 
     //add
-    public void addSportFacilities(){}
+    public void addSportFacilities(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input code: ");
+        String code = scanner.next();
+
+        //check code is exist
+        while (sportFacilitiesRepository.search(code,null) != null){
+            System.out.println("Code is exist, please input again!");
+            code = scanner.next();
+        }
+
+
+        System.out.println("Please input name: ");
+        String name = scanner.next();
+        System.out.println("Please input status(0.can not use, 1.can use): ");
+        boolean status = scanner.nextInt()==1?true:false;
+
+        SportFacility sportFacility = new SportFacility(code,name,status);
+        sportFacilitiesRepository.add(sportFacility);
+    }
 
     //update
     public void updateSportFacilities(){}

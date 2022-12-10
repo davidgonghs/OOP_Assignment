@@ -15,12 +15,20 @@ public class SportFacilitiesRepositoryImpl implements SportFacilitiesRepository 
     Map<String, SportFacility> sportFacilityMap = new HashMap<>();
 
     @Override
-    public SportFacility search(String code) {
-        if (sportFacilityMap.containsKey(code)) {
-            return sportFacilityMap.get(code);
-        } else {
-            return null;
+    public SportFacility search(String code, String name) {
+        //for loop map , if code or name not null, check if code or name match
+        for (Map.Entry<String, SportFacility> entry : sportFacilityMap.entrySet()) {
+            if (code != null) {
+                if (entry.getValue().getCode().equals(code)) {
+                    return entry.getValue();
+                }
+            } else if (name != null) {
+                if (entry.getValue().getFacilityName().equals(name)) {
+                    return entry.getValue();
+                }
+            }
         }
+        return null;
     }
 
     @Override

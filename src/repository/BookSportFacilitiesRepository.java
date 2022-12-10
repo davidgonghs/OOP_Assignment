@@ -7,4 +7,5 @@ public interface BookSportFacilitiesRepository extends Repository {
     public void SearchByStudentId(String keyword);
     public void book(BookSportFacility bookSportFacility);
     public void cancel(String studentNumber, String code);
+    public int getLastId();
 }

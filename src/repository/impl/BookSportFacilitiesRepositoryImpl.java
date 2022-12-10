@@ -15,6 +15,12 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
 
     Map<String, ArrayList<BookSportFacility>> bookSportFacilitiesMap = new HashMap<>();
 
+    private int lastId = 0;
+
+    public int getLastId() {
+        return lastId;
+    }
+
     @Override
     public void SearchByFacilityCode(String keyword) {
         if (bookSportFacilitiesMap.containsKey(keyword)) {
@@ -80,6 +86,7 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
                     bookSportFacilities.add(bookSportFacility);
                     bookSportFacilitiesMap.put(bookSportFacility.getSportFacilityCode(), bookSportFacilities);
                 }
+                lastId = bookSportFacility.getId();
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -103,7 +110,7 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
             BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
             //studentNumber + "," + name + "," + age + ","  + email + "," + phone + "," + programme;
             //write header
-            writeText.write("code,facilityName,status");
+            writeText.write("id,code,facilityName,status");
             for (Map.Entry<String, ArrayList<BookSportFacility>> entry : bookSportFacilitiesMap.entrySet()) {
                 for (BookSportFacility bookSportFacility : entry.getValue()) {
                     writeText.newLine();
