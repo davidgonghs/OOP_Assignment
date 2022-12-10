@@ -25,7 +25,7 @@ public class Main {
         StudentService studentService = new StudentService(studentRepository);
         StudentResultService studentResultService = new StudentResultService(studentResultRepository, studentRepository);
         ClassVenuesService classVenuesService = new ClassVenuesService(studentRepository, classVenuesRepository);
-        SportFacilitiesService sportFacilitiesService = new SportFacilitiesService(sportFacilitiesRepository, bookSportFacilitiesRepository);
+        SportFacilitiesService sportFacilitiesService = new SportFacilitiesService(sportFacilitiesRepository, bookSportFacilitiesRepository, studentRepository);
 
 
         //show menu

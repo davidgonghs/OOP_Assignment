@@ -1,10 +1,12 @@
 package service;
 
+import domain.BookSportFacility;
 import domain.SportFacility;
 import repository.BookSportFacilitiesRepository;
 import repository.SportFacilitiesRepository;
 import repository.StudentRepository;
 import repository.StudentResultRepository;
+import tool.CommonTool;
 
 import java.util.Scanner;
 
@@ -15,10 +17,13 @@ public class SportFacilitiesService extends Service{
 
     private BookSportFacilitiesRepository bookSportFacilitiesRepository;
 
+    private StudentRepository studentRepository;
+
     //constructor
-    public SportFacilitiesService(SportFacilitiesRepository sportFacilitiesRepository, BookSportFacilitiesRepository bookSportFacilitiesRepository) {
+    public SportFacilitiesService(SportFacilitiesRepository sportFacilitiesRepository, BookSportFacilitiesRepository bookSportFacilitiesRepository, StudentRepository studentRepository) {
         this.sportFacilitiesRepository = sportFacilitiesRepository;
         this.bookSportFacilitiesRepository = bookSportFacilitiesRepository;
+        this.studentRepository = studentRepository;
     }
 
     //show menu function
@@ -64,22 +69,22 @@ public class SportFacilitiesService extends Service{
                     break;
                 case 3:
                     //add
-                    add();
+                    addSportFacilities();
                     System.out.println();
                     break;
                 case 4:
                     //update
-                    update();
+                    updateSportFacilities();
                     System.out.println();
                     break;
                 case 5:
                     //delete
-                    delete();
+                    deleteSportFacilities();
                     System.out.println();
                     break;
                 case 6:
                     //book
-                    bookSportFacilities();
+                    searchBookSportFacilities();
                     System.out.println();
                     break;
                 case 7:
@@ -88,9 +93,10 @@ public class SportFacilitiesService extends Service{
                     System.out.println();
                     break;
                 case 8:
-                    //exit
+                    bookSportFacilities();
                     break;
                 case 9:
+                    cancelBookSportFacilities();
                     break;
                 case 0:
                     save();
@@ -139,7 +145,29 @@ public class SportFacilitiesService extends Service{
     }
 
     //search book sport facilities by student number
-    public void searchBookSportFacilities(){}
+    public void searchBookSportFacilities(){
+        //two type of search, one facility code , or studnet ID
+        System.out.println("Please choose search type: 1.Facility Code 2.Student ID");
+        Scanner scanner = new Scanner(System.in);
+        int choose = scanner.nextInt();
+        switch (choose){
+            case 1:
+                //search by code
+                System.out.println("Please input code: ");
+                String code = scanner.next();
+                bookSportFacilitiesRepository.searchByFacilityCode(code);
+                break;
+            case 2:
+                //search by student ID
+                System.out.println("Please input student ID: ");
+                String studentID = scanner.next();
+                bookSportFacilitiesRepository.searchByStudentId(studentID);
+                break;
+            default:
+                System.out.println("Please choose correct menu!");
+                break;
+        }
+    }
 
 
     //show all
@@ -167,23 +195,91 @@ public class SportFacilitiesService extends Service{
 
         SportFacility sportFacility = new SportFacility(code,name,status);
         sportFacilitiesRepository.add(sportFacility);
+        System.out.println("Add success!");
     }
 
     //update
-    public void updateSportFacilities(){}
+    public void updateSportFacilities(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input code: ");
+        String code = scanner.next();
+
+        //check code is exist
+        while (sportFacilitiesRepository.search(code,null) == null){
+            System.out.println("Code is not exist, please input again!");
+            code = scanner.next();
+        }
+
+        System.out.println("Please input name: ");
+        String name = scanner.next();
+        System.out.println("Please input status(0.can not use, 1.can use): ");
+        boolean status = scanner.nextInt()==1?true:false;
+
+        SportFacility sportFacility = new SportFacility(code,name,status);
+        sportFacilitiesRepository.update(sportFacility);
+        System.out.println("Update success!");
+    }
 
     //delete
-    public void deleteSportFacilities(){}
+    public void deleteSportFacilities(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input code: ");
+        String code = scanner.next();
+
+        //check code is exist
+        while (sportFacilitiesRepository.search(code,null) == null){
+            System.out.println("Code is not exist, please input again!");
+            code = scanner.next();
+        }
+
+        sportFacilitiesRepository.delete(code);
+        System.out.println("Delete success!");
+    }
 
 
     public void showAllBookSportFacilities(){
         bookSportFacilitiesRepository.showAll();
     }
 
-    public void bookSportFacilities(){}
+    public void bookSportFacilities(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input student ID: ");
+        String studentID = scanner.next();
 
-    public void cancelBookSportFacilities(){}
+        //check student ID is exist
+        while (studentRepository.search(studentID) == null){
+            System.out.println("Student ID is not exist, please input again!");
+            studentID = scanner.next();
+        }
 
+        System.out.println("Please input facility code: ");
+        String facilityCode = scanner.next();
+
+        //check facility code is exist
+        while (sportFacilitiesRepository.search(facilityCode,null) == null){
+            System.out.println("Facility code is not exist, please input again!");
+            facilityCode = scanner.next();
+        }
+
+        System.out.println("Please input start time (yyyy-MM-dd HH:mm:ss): ");
+        String start = scanner.next();
+
+        System.out.println("Please input end time (yyyy-MM-dd HH:mm:ss): ");
+        String end = scanner.next();
+
+        BookSportFacility bookSportFacilities = new BookSportFacility(bookSportFacilitiesRepository.getLastId()+1,studentID,facilityCode, CommonTool.convertStringToDate(start),CommonTool.convertStringToDate(end));
+        bookSportFacilitiesRepository.book(bookSportFacilities);
+        System.out.println("Book success!");
+    }
+
+    public void cancelBookSportFacilities(){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please input book id: ");
+        int id = scanner.nextInt();
+
+        bookSportFacilitiesRepository.cancel(id);
+        System.out.println("Cancel book success!");
+    }
 
 
     //save function

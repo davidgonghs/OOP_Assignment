@@ -22,7 +22,7 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
     }
 
     @Override
-    public void SearchByFacilityCode(String keyword) {
+    public void searchByFacilityCode(String keyword) {
         if (bookSportFacilitiesMap.containsKey(keyword)) {
             for (BookSportFacility bookSportFacility : bookSportFacilitiesMap.get(keyword)) {
                 System.out.println(bookSportFacility.toString());
@@ -33,7 +33,7 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
     }
 
     @Override
-    public void SearchByStudentId(String keyword) {
+    public void searchByStudentId(String keyword) {
         for (Map.Entry<String, ArrayList<BookSportFacility>> entry : bookSportFacilitiesMap.entrySet()) {
             for (BookSportFacility bookSportFacility : entry.getValue()) {
                 if (bookSportFacility.getSudentId().equals(keyword)) {
@@ -55,11 +55,11 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
     }
 
     @Override
-    public void cancel(String sudentId, String code) {
-        if (bookSportFacilitiesMap.containsKey(code)) {
-            for (BookSportFacility bookSportFacility : bookSportFacilitiesMap.get(code)) {
-                if (bookSportFacility.getSudentId().equals(sudentId)) {
-                    bookSportFacilitiesMap.get(code).remove(bookSportFacility);
+    public void cancel(int id) {
+        for (Map.Entry<String, ArrayList<BookSportFacility>> entry : bookSportFacilitiesMap.entrySet()) {
+            for (BookSportFacility bookSportFacility : entry.getValue()) {
+                if (bookSportFacility.getId() == id) {
+                    entry.getValue().remove(bookSportFacility);
                     break;
                 }
             }
