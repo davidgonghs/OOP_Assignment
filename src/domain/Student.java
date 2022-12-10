@@ -93,7 +93,6 @@ public class Student implements CSVClass {
     @Override
     public String toCSV() {
         return studentNumber + "," + name + "," + age + ","  + email + "," + phone + "," + programme;
-
     }
 
     @Override

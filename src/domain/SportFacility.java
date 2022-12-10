@@ -46,6 +46,10 @@ public class SportFacility implements CSVClass {
         return code + "," + facilityName + "," + (status?"1":"0");
     }
 
+    public String toString() {
+        return code + "," + facilityName + "," + (status?"1":"0");
+    }
+
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");

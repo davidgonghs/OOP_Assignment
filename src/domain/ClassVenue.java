@@ -60,6 +60,10 @@ public class ClassVenue implements CSVClass {
         return code + "," + classVenuesName + "," + (status?"1":"0");
     }
 
+    public String toString() {
+        return code + "," + classVenuesName + "," + (status?"1":"0");
+    }
+
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");

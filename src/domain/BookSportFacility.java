@@ -69,6 +69,11 @@ public class BookSportFacility implements CSVClass {
         return id + "," + sportFacilityCode + "," + studentId + "," + CommonTool.convertDateToString(startTime) + "," + CommonTool.convertDateToString(endTime);
     }
 
+    public String toString() {
+        return id + "," + sportFacilityCode + "," + studentId + "," + CommonTool.convertDateToString(startTime) + "," + CommonTool.convertDateToString(endTime);
+    }
+
+
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");
