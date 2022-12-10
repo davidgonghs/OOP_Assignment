@@ -20,9 +20,12 @@ public class ClassVenue implements CSVClass {
     //code,classVenuesName,status
     private String code;
     private String classVenuesName;
-    private String status;
+    private boolean status;
 
-public ClassVenue(String code, String classVenuesName, String status) {
+    public ClassVenue() {
+    }
+
+    public ClassVenue(String code, String classVenuesName, boolean status) {
         this.code = code;
         this.classVenuesName = classVenuesName;
         this.status = status;
@@ -44,17 +47,17 @@ public ClassVenue(String code, String classVenuesName, String status) {
         this.classVenuesName = classVenuesName;
     }
 
-    public String getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 
     @Override
     public String toCSV() {
-        return code + "," + classVenuesName + "," + status;
+        return code + "," + classVenuesName + "," + (status?"1":"0");
     }
 
     @Override
@@ -62,7 +65,7 @@ public ClassVenue(String code, String classVenuesName, String status) {
         String[] data = csv.split(",");
         code = data[0];
         classVenuesName = data[1];
-        status = data[2];
+        status = Integer.parseInt(data[2]) == 1;
 
     }
 }

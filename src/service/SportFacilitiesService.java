@@ -8,6 +8,8 @@ import repository.StudentRepository;
 import repository.StudentResultRepository;
 import tool.CommonTool;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SportFacilitiesService extends Service{
@@ -150,22 +152,31 @@ public class SportFacilitiesService extends Service{
         System.out.println("Please choose search type: 1.Facility Code 2.Student ID");
         Scanner scanner = new Scanner(System.in);
         int choose = scanner.nextInt();
+        ArrayList<BookSportFacility> bookSportFacilities = null;
         switch (choose){
             case 1:
                 //search by code
                 System.out.println("Please input code: ");
                 String code = scanner.next();
-                bookSportFacilitiesRepository.searchByFacilityCode(code);
+                bookSportFacilities = bookSportFacilitiesRepository.searchByFacilityCode(code);
                 break;
             case 2:
                 //search by student ID
                 System.out.println("Please input student ID: ");
                 String studentID = scanner.next();
-                bookSportFacilitiesRepository.searchByStudentId(studentID);
+                bookSportFacilities = bookSportFacilitiesRepository.searchByStudentId(studentID);
                 break;
             default:
                 System.out.println("Please choose correct menu!");
                 break;
+        }
+
+        if(bookSportFacilities == null){
+            System.out.println("Not found!");
+        } else {
+            for (BookSportFacility bookSportFacility : bookSportFacilities) {
+                System.out.println(bookSportFacility);
+            }
         }
     }
 

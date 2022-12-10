@@ -43,7 +43,7 @@ public class SportFacility implements CSVClass {
 
     @Override
     public String toCSV() {
-        return code + "," + facilityName + "," + status;
+        return code + "," + facilityName + "," + (status?"1":"0");
     }
 
     @Override

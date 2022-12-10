@@ -7,6 +7,7 @@ import repository.BookSportFacilitiesRepository;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRepository {
@@ -21,26 +22,26 @@ public class BookSportFacilitiesRepositoryImpl implements BookSportFacilitiesRep
         return lastId;
     }
 
+
     @Override
-    public void searchByFacilityCode(String keyword) {
-        if (bookSportFacilitiesMap.containsKey(keyword)) {
-            for (BookSportFacility bookSportFacility : bookSportFacilitiesMap.get(keyword)) {
-                System.out.println(bookSportFacility.toString());
-            }
-        } else {
-            System.out.println("No record found");
+    public ArrayList<BookSportFacility> searchByFacilityCode(String keyword) {
+        if(bookSportFacilitiesMap.containsKey(keyword)){
+            return bookSportFacilitiesMap.get(keyword);
         }
+        return null;
     }
 
     @Override
-    public void searchByStudentId(String keyword) {
+    public ArrayList<BookSportFacility> searchByStudentId(String keyword) {
+        ArrayList<BookSportFacility> bookSportFacilities = new ArrayList<>();
         for (Map.Entry<String, ArrayList<BookSportFacility>> entry : bookSportFacilitiesMap.entrySet()) {
             for (BookSportFacility bookSportFacility : entry.getValue()) {
-                if (bookSportFacility.getSudentId().equals(keyword)) {
-                    System.out.println(bookSportFacility.toString());
+                if(bookSportFacility.getSudentId().equals(keyword)){
+                    bookSportFacilities.add(bookSportFacility);
                 }
             }
         }
+        return bookSportFacilities;
     }
 
     @Override
