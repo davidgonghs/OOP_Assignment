@@ -14,12 +14,13 @@ public class Main {
         studentResultRepository.initialize();
         ClassVenuesRepository classVenuesRepository = new ClassVenuesRepositoryImpl();
         classVenuesRepository.initialize();
-
+        SportsFacilitiesRepository sportsFacilitiesRepository = new SportsFacilitiesRepositoryImpl();
+        sportsFacilitiesRepository.initialize();
 
         StudentService studentService = new StudentService(studentRepository);
         StudentResultService studentResultService = new StudentResultService(studentResultRepository, studentRepository);
         ClassVenuesService classVenuesService = new ClassVenuesService(studentRepository, classVenuesRepository);
-
+        SportsFacilitiesService sportsFacilitiesService = new SportsFacilitiesService(sportsFacilitiesRepository,studentRepository);
 
         //show menu
         String[] menu = {"1.Manage Student","2.Class venues booking", "3.Sports facilities booking","4.Students’ results keeping", "5.Exit"};
@@ -47,6 +48,7 @@ public class Main {
                     break;
                 case 3:
                     //sports facilities booking
+                    sportsFacilitiesService.process();
                     System.out.println();
                     break;
                 case 4:

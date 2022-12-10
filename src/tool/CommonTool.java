@@ -105,5 +105,104 @@ public class CommonTool {
         return 0.0;
     }
 
+    public static boolean isSportsNameCodeValid(int code){
+        try {
+            if (code >= 1 && code <= 4){
+
+
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public static boolean isBookingDayCodeValid(int code){
+        try {
+            if (code >= 1 && code <= 5){
+
+
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public static boolean isBookingTimeCodeValid(int code){
+        try {
+            if (code >= 1 && code <= 2){
+
+
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public static boolean isCourtNumValid(int code){
+        try {
+            if (code >= 1 && code <= 2){
+
+
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+
+    public static String sportsNameCodeToName(int sportsNameCode){
+        if (sportsNameCode == 1) {
+            return "Basketball";
+        } else if (sportsNameCode == 2) {
+            return "Tennis";
+        } else if (sportsNameCode == 3) {
+            return "Badminton";
+        } else if (sportsNameCode == 4) {
+            return "Futsal";
+        } else {
+            return null;
+//                System.out.println("Invalid input, please try again.");
+        }
+    }
+
+    public static String bookingDayCodeToName(int bookingDayCode){
+        if (bookingDayCode == 1) {
+            return "Monday";
+        } else if (bookingDayCode == 2) {
+            return "Tuesday";
+        } else if (bookingDayCode == 3) {
+            return "Wednesday";
+        } else if (bookingDayCode == 4) {
+            return "Thursday";
+        } else if (bookingDayCode == 5) {
+            return "Friday";
+        } else {
+            return null;
+//                System.out.println("Invalid input, please try again.");
+        }
+    }
+
+    public static String bookingTimeCodeToName(int bookingTimeCode){
+        if (bookingTimeCode == 1) {
+            return "2pm-3pm";
+        } else if (bookingTimeCode == 2) {
+            return "4pm-5pm";
+        } else {
+            return null;
+//                System.out.println("Invalid input, please try again.");
+        }
+    }
+
 
 }
