@@ -26,7 +26,6 @@ public class StudentRepositoryImpl implements StudentRepository {
                     i++;
                     continue;
                 }
-
                 Student student = new Student();
                 student.fromCSV(line);
                 studentMap.put(student.getStudentNumber(),student);

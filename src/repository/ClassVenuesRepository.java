@@ -15,10 +15,10 @@
 //</editor-fold>
 package repository;
 
-import domain.ClassVenues;
+import domain.ClassVenue;
 
 public interface ClassVenuesRepository extends Repository {
-    public void add(ClassVenues csvClass);
-    public void update(ClassVenues csvClass);
+    public void add(ClassVenue csvClass);
+    public void update(ClassVenue csvClass);
     public void delete(String code);
 }

@@ -1,19 +1,24 @@
 package repository;
 
-import domain.ClassVenues;
+import domain.ClassVenue;
+import domain.Student;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ClassVenuesRepositoryImpl implements ClassVenuesRepository {
 
     private static String classVenuesDataPath = "src/data/classVenues.csv";
 
+    private Map<String, ClassVenue> venueMap = new HashMap<>();
 
     @Override
-    public void add(ClassVenues csvClass) {
+    public void add(ClassVenue csvClass) {
 
     }
 
     @Override
-    public void update(ClassVenues csvClass) {
+    public void update(ClassVenue csvClass) {
 
     }
 
