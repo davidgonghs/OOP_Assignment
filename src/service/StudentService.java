@@ -162,7 +162,7 @@ public class StudentService extends Service {
         scanner.nextLine();
         //check student number is it exist
         while (studentRepository.search(studentNumber) != null){
-            System.out.println("Can't find student");
+            System.out.println("Can't find student, please input correct student number");
             studentNumber = scanner.nextLine();
             scanner.nextLine();
         }
