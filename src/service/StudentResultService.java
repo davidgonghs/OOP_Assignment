@@ -40,8 +40,13 @@ public class StudentResultService extends Service{
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please choose menu: ");
-            int choose = scanner.nextInt();
-
+            int choose;
+            try{
+                choose = scanner.nextInt();
+            }catch (Exception e){
+                choose = 0;
+                continue;
+            }
 
             System.out.println();
 
