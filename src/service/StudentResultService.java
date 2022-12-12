@@ -153,8 +153,11 @@ public class StudentResultService extends Service{
         //check student number
         while (studentRepository.search(studentNumber) == null){
             System.out.println("Student number not found!");
-            System.out.println("Please input student number: ");
+            System.out.println("Please input student number (0 to exit): ");
             studentNumber = scanner.nextLine();
+            if (studentNumber.equals("0")){
+                return;
+            }
             scanner.nextLine();
         }
 
@@ -192,6 +195,7 @@ public class StudentResultService extends Service{
 
         StudentResult studentResult = new StudentResult(studentNumber,semester,code,module,marks,grade,credit,gpaPoint);
         studentResultRepository.add(studentResult);
+        System.out.println("Add student result successfully");
     }
 
     @Override
@@ -205,8 +209,11 @@ public class StudentResultService extends Service{
         //check student number
         while (studentRepository.search(studentNumber) == null){
             System.out.println("Student number not found!");
-            System.out.println("Please input student number: ");
+            System.out.println("Please input student number (0 to exit): ");
             studentNumber = scanner.nextLine();
+            if (studentNumber.equals("0")){
+                return;
+            }
             scanner.nextLine();
         }
 
@@ -236,6 +243,7 @@ public class StudentResultService extends Service{
         StudentResult studentResult = new StudentResult(studentNumber,semester,code,module,marks,grade,credit,gpaPoint);
         System.out.println(studentResult);
         studentResultRepository.update(studentResult);
+        System.out.println("Update student result successfully");
     }
 
     @Override
@@ -251,11 +259,13 @@ public class StudentResultService extends Service{
         scanner.nextLine();
 
         studentResultRepository.delete(studentNumber,code);
+        System.out.println("Delete student result successfully");
 
     }
 
     @Override
     public void save() {
         studentResultRepository.save();
+        System.out.println("Save student result successfully");
     }
 }
