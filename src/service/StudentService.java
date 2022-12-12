@@ -1,5 +1,6 @@
 package service;
 
+import com.sun.org.apache.xpath.internal.res.XPATHErrorResources_it;
 import domain.Student;
 import repository.StudentRepository;
 
@@ -35,9 +36,16 @@ public class StudentService extends Service {
             Scanner scanner = new Scanner(System.in);
 
             System.out.println("Please choose menu: ");
-            int choose = scanner.nextInt();
-            scanner.nextLine();
-            System.out.println();
+            int choose;
+            try{
+                choose = scanner.nextInt();
+                scanner.nextLine();
+                System.out.println();
+            }catch (Exception e){
+                choose = 0;
+                continue;
+            }
+
 
             switch (choose){
                 case 1:
@@ -54,24 +62,20 @@ public class StudentService extends Service {
                     //add
                     add();
                     save();
-                    System.out.println();
                     break;
                 case 4:
                     //update
                     update();
                     save();
-                    System.out.println();
                     break;
                 case 5:
                     //delete
                     delete();
                     save();
-                    System.out.println();
                     break;
                 case 6:
                     //exit
                     save();
-                    System.out.println();
                     return;
                 default:
                     System.out.println("Please choose correct menu");
@@ -114,16 +118,22 @@ public class StudentService extends Service {
         String studentNumber = scanner.nextLine();
         scanner.nextLine();
         while (!studentNumber.matches("[A-Z]{1}[0-9]{4}")){
-            System.out.println("Please input correct student number");
+            System.out.println("Please input correct student number(0 to exit): ");
             studentNumber = scanner.nextLine();
+            if (studentNumber.equals("0")){
+                return;
+            }
             scanner.nextLine();
         }
 
         //check student number is exist
         while (studentRepository.search(studentNumber) != null){
             System.out.println("Student number is exist");
-            System.out.println("Please input another student number");
+            System.out.println("Please input another student number(0 to exit): ");
             studentNumber = scanner.nextLine();
+            if(studentNumber.equals("0")){
+                return;
+            }
             scanner.nextLine();
         }
 
@@ -151,6 +161,7 @@ public class StudentService extends Service {
 
         Student student = new Student(studentNumber, name, age, email, phone, programme);
         studentRepository.add(student);
+        System.out.println("Add successfully!");
     }
 
     @Override
@@ -161,10 +172,14 @@ public class StudentService extends Service {
         String studentNumber = scanner.nextLine();
         scanner.nextLine();
         //check student number is it exist
-        while (studentRepository.search(studentNumber) != null){
-            System.out.println("Can't find student, please input correct student number");
-            studentNumber = scanner.nextLine();
-            scanner.nextLine();
+        while (studentRepository.search(studentNumber) == null){
+            scanner = new Scanner(System.in);
+            System.out.println("Can't find student, please input correct student number(input 0 to exit): ");
+            studentNumber = scanner.next();
+            if(studentNumber.equals("0")){
+                return;
+            }
+            System.out.println(studentNumber);
         }
 
         System.out.println("Enter Student Name: ");
@@ -192,6 +207,7 @@ public class StudentService extends Service {
 
         Student student = new Student(studentNumber, name, age, email, phone, programme);
         studentRepository.update(student);
+        System.out.println("Update successfully!");
     }
 
     @Override
@@ -202,11 +218,13 @@ public class StudentService extends Service {
         String studentNumber = scanner.nextLine();
         scanner.nextLine();
         studentRepository.delete(studentNumber);
+        System.out.println("Delete successfully!");
     }
 
     //save function
     public void save() {
         studentRepository.save();
+        System.out.println("Save successfully!");
     }
 
 
