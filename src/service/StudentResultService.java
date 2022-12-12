@@ -248,7 +248,6 @@ public class StudentResultService extends Service{
         StudentResult studentResult = new StudentResult(studentNumber,semester,code,module,marks,grade,credit,gpaPoint);
         System.out.println(studentResult);
         studentResultRepository.update(studentResult);
-        System.out.println("Update student result successfully");
     }
 
     @Override
