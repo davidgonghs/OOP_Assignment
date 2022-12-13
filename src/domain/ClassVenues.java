@@ -14,42 +14,97 @@
 //       None
 //</editor-fold>
 
+
 package domain;
 
+
 public class ClassVenues implements CSVClass {
-    private String code;
-    private String venue;
+    private String studentNumber;
+    private String venueName;
 
-    public ClassVenues(String code, String venue) {
-        this.code = code;
-        this.venue = venue;
+    private int classCode;
+    private String bookingDay;
+    private String bookingTime;
+
+    //Constructor
+    public ClassVenues() {
     }
 
-    public String getCode() {
-        return code;
+    public ClassVenues(String _studentNumber, String _venueName, int _classCode, String _bookingDay, String _bookingTime) {
+        this.studentNumber = _studentNumber;
+        this.venueName = _venueName;
+        this.classCode = _classCode;
+        this.bookingDay = _bookingDay;
+        this.bookingTime = _bookingTime;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    //Getter and setter methods
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 
     public String getVenue() {
-        return venue;
+        return venueName;
     }
 
-    public void setVenue(String venue) {
-        this.venue = venue;
+    public void setVenue(String _venueName) {
+        this.venueName = _venueName;
+    }
+
+    public int getClassCode() {
+        return classCode;
+    }
+
+    public void setClassCode(int _classCode) {
+        this.classCode = _classCode;
+    }
+
+    public String getBookingDay() {
+        return bookingDay;
+    }
+
+    public void setBookingDay(String _bookingDay) {
+        this.bookingDay = _bookingDay;
+    }
+
+    public String getBookingTime() {
+        return bookingTime;
+    }
+
+    public void setBookingTime(String _bookingTime) {
+        this.bookingTime = _bookingTime;
     }
 
     @Override
     public String toCSV() {
-        return code + "," + venue;
+        return studentNumber+","+venueName+","+classCode+","+bookingDay+","+bookingTime;
     }
 
+
+    //Retrieve data from csv file
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");
-        code = data[0];
-        venue = data[1];
+
+        studentNumber = data[0];
+        venueName = data[1];
+        classCode = Integer.parseInt(data[2]);
+        bookingDay = data[3];
+        bookingTime = data[4];
+    }
+
+    @Override
+    public String toString() {
+        return "Class Booking Details: {" +
+                "1. Student Number : '" + studentNumber + '\'' +
+                ", 2. Venue : '" + venueName + '\'' +
+                ", 3. Class Code : " + classCode +
+                ", 4. Booking Day :'" + bookingDay + '\'' +
+                ", 5. Booking Time :'" + bookingTime + '\'' +
+                '}';
     }
 }
