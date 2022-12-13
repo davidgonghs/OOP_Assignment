@@ -17,8 +17,14 @@ package repository;
 
 import domain.ClassVenues;
 
+import java.util.ArrayList;
+
 public interface ClassVenuesRepository extends Repository {
+
+    public ArrayList<ClassVenues> search(String keyword);
+
     public void add(ClassVenues csvClass);
-    public void update(ClassVenues csvClass);
-    public void delete(String code);
+//    public void update(ClassVenues csvClass);
+    public void delete(String studentNumber, String venueName, int classCode, String bookingDay, String bookingTime );
+
 }
