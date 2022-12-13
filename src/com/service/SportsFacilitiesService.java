@@ -114,7 +114,7 @@ public class SportsFacilitiesService extends Service{
                 if (studentNumSportsNameMap.containsKey(sportsFacility.getStudentNumber())){
                     studentNumSportsNameMap.put(sportsFacility.getStudentNumber(),  sportsFacility.getSportName());
                     studentNumCourtNumMap.put(sportsFacility.getStudentNumber(), sportsFacility.getCourtNum());
-                    studentNumBookingTime.put(sportsFacility.getStudentNumber(), sportsFacility.getBookingDay());
+                    studentNumBookingDay.put(sportsFacility.getStudentNumber(), sportsFacility.getBookingDay());
                     studentNumBookingTime.put(sportsFacility.getStudentNumber(), sportsFacility.getBookingTime());
 
                 }
