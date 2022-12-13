@@ -7,7 +7,6 @@ public class Student implements CSVClass {
 
     private int age;
 
-
     private String email;
 
     private String phone;

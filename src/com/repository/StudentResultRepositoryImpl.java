@@ -113,7 +113,7 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
         if (studentResultMap.containsKey(csvClass.getStudentNumber())) {
             List<StudentResult> studentResultList = studentResultMap.get(csvClass.getStudentNumber());
             for (int i = 0; i < studentResultList.size(); i++) {
-                if (studentResultList.get(i).getCode().equals(csvClass.getCode())) {
+                if (studentResultList.get(i).getCode().equals(csvClass.getCode()) && studentResultList.get(i).getSemester() == csvClass.getSemester()) {
                     studentResultList.set(i, csvClass);
                     System.out.println("Student result updated successfully");
                 }
