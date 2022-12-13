@@ -1,15 +1,15 @@
-package repository;
+package com.repository;
 
 
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
-import domain.Student;
+import com.domain.Student;
 
 public class StudentRepositoryImpl implements StudentRepository {
-    private static String studentDataPath = "src/data/student.csv";
-  //  private static String studentResultDataPath = "src/data/studentResult.csv";
+    private static String studentDataPath = "src/com.data/student.csv";
+  //  private static String studentResultDataPath = "src/com.data/studentResult.csv";
 
     private Map<String,Student> studentMap = new HashMap<>();
 

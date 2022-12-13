@@ -14,15 +14,13 @@
 //       None
 //</editor-fold>
 
-package service;
+package com.service;
 
-import domain.ClassVenues;
-import domain.SportsFacilities;
-import repository.ClassVenuesRepository;
-import repository.ClassVenuesRepositoryImpl;
-import repository.SportsFacilitiesRepositoryImpl;
-import repository.StudentRepository;
-import tool.CommonTool;
+import com.domain.ClassVenues;
+import com.repository.ClassVenuesRepository;
+import com.repository.ClassVenuesRepositoryImpl;
+import com.repository.StudentRepository;
+import com.tool.CommonTool;
 
 import java.util.*;
 

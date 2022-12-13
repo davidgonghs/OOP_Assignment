@@ -1,5 +1,5 @@
-import repository.*;
-import service.*;
+import com.repository.*;
+import com.service.*;
 
 import java.util.Scanner;
 

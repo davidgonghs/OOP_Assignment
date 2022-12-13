@@ -15,7 +15,7 @@
 //</editor-fold>
 
 
-package domain;
+package com.domain;
 
 
 public class ClassVenues implements CSVClass {
@@ -85,7 +85,7 @@ public class ClassVenues implements CSVClass {
     }
 
 
-    //Retrieve data from csv file
+    //Retrieve com.data from csv file
     @Override
     public void fromCSV(String csv) {
         String[] data = csv.split(",");

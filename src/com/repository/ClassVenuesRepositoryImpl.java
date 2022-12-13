@@ -1,7 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.ClassVenues;
-import domain.SportsFacilities;
+import com.domain.ClassVenues;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -11,15 +10,15 @@ import java.util.Map;
 
 public class ClassVenuesRepositoryImpl implements ClassVenuesRepository {
 
-    private static String classVenuesDataPath = "src/data/classVenues.csv";
+    private static String classVenuesDataPath = "src/com.data/classVenues.csv";
 
     private Map<String, List<ClassVenues>> classVenuesMap = new HashMap<>();
     //    public ArrayList<SportsFacilities> sportsBooking =
     public static ArrayList<ClassVenues> classVenuesBooking= new ArrayList<ClassVenues>();
 
-    //get student result data from file
+    //get student result com.data from file
     public void initialize() {
-        //get student result data from file
+        //get student result com.data from file
         String line = "";
         String cvsSplitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(classVenuesDataPath))) {
@@ -119,7 +118,7 @@ public class ClassVenuesRepositoryImpl implements ClassVenuesRepository {
     @Override
     public void save() {
         try{
-            //save student result data to file
+            //save student result com.data to file
             File file = new File(classVenuesDataPath);
             BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
 

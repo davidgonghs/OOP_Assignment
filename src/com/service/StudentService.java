@@ -1,7 +1,7 @@
-package service;
+package com.service;
 
-import domain.Student;
-import repository.StudentRepository;
+import com.domain.Student;
+import com.repository.StudentRepository;
 
 import java.util.Scanner;
 

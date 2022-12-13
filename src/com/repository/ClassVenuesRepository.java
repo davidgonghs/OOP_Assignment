@@ -1,6 +1,6 @@
 //<editor-fold desc="File Description">
 // DESCRIPTION :
-//       This file serves as a link to csv file, just save data and show data only
+//       This file serves as a link to csv file, just save com.data and show com.data only
 //
 //  PUBLIC FUNCTIONS :
 //       None
@@ -13,9 +13,9 @@
 //  CHANGES :
 //       None
 //</editor-fold>
-package repository;
+package com.repository;
 
-import domain.ClassVenues;
+import com.domain.ClassVenues;
 
 import java.util.ArrayList;
 

@@ -1,10 +1,10 @@
-package service;
+package com.service;
 
-import domain.SportsFacilities;
-import repository.SportsFacilitiesRepository;
-import repository.SportsFacilitiesRepositoryImpl;
-import repository.StudentRepository;
-import tool.CommonTool;
+import com.domain.SportsFacilities;
+import com.repository.SportsFacilitiesRepository;
+import com.repository.SportsFacilitiesRepositoryImpl;
+import com.repository.StudentRepository;
+import com.tool.CommonTool;
 import java.util.ArrayList;
 
 import java.util.*;

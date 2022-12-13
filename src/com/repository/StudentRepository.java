@@ -1,6 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.Student;
+import com.domain.Student;
 
 public interface StudentRepository extends Repository {
     public Student search(String keyword);

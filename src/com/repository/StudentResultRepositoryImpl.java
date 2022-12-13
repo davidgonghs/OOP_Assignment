@@ -1,6 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.StudentResult;
+import com.domain.StudentResult;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 public class StudentResultRepositoryImpl implements StudentResultRepository {
-    //data file path
-    private static String studentResultDataPath = "src/data/studentResult.csv";
+    //com.data file path
+    private static String studentResultDataPath = "src/com.data/studentResult.csv";
 
     //student result map  <StudentNumber,result list>
     private Map<String, List<StudentResult>> studentResultMap = new HashMap<>();
@@ -18,7 +18,7 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
 
     //initialize function
     public void initialize() {
-        //get student result data from file
+        //get student result com.data from file
         String line = "";
         String cvsSplitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(studentResultDataPath))) {
@@ -63,7 +63,7 @@ public class StudentResultRepositoryImpl implements StudentResultRepository {
     //save function
     public void save() {
         try{
-            //save student result data to file
+            //save student result com.data to file
             File file = new File(studentResultDataPath);
             BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
             // studentNumber+","+year+","+semester+","+subjectName+","+subjectCode+","+marks+","+grade;

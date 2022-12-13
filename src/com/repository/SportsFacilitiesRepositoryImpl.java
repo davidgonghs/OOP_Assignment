@@ -1,7 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.SportsFacilities;
-import domain.StudentResult;
+import com.domain.SportsFacilities;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SportsFacilitiesRepositoryImpl implements SportsFacilitiesRepository{
-    private static String sportsFacilitiesDataPath = "src/data/sportsFacilities.csv";
+    private static String sportsFacilitiesDataPath = "src/com.data/sportsFacilities.csv";
 
     //student result map  <StudentNumber,result list>
     private Map<String, List<SportsFacilities>> sportsFacilitiesMap = new HashMap<>();
@@ -21,7 +20,7 @@ public class SportsFacilitiesRepositoryImpl implements SportsFacilitiesRepositor
 
     //initialize function
     public void initialize() {
-        //get student result data from file
+        //get student result com.data from file
         String line = "";
         String cvsSplitBy = ",";
         try (BufferedReader br = new BufferedReader(new FileReader(sportsFacilitiesDataPath))) {
@@ -68,7 +67,7 @@ public class SportsFacilitiesRepositoryImpl implements SportsFacilitiesRepositor
     //save function
     public void save() {
         try{
-            //save student result data to file
+            //save student result com.data to file
             File file = new File(sportsFacilitiesDataPath);
             BufferedWriter writeText = new BufferedWriter(new FileWriter(file));
 

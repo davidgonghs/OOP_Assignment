@@ -1,6 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.SportsFacilities;
+import com.domain.SportsFacilities;
 
 import java.util.ArrayList;
 public interface SportsFacilitiesRepository extends Repository{

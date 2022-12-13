@@ -14,7 +14,7 @@
 //       None
 //</editor-fold>
 
-package tool;
+package com.tool;
 
 public class CommonTool {
 

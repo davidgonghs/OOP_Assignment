@@ -1,6 +1,4 @@
-package repository;
-
-import domain.CSVClass;
+package com.repository;
 
 public interface Repository {
     public void initialize();

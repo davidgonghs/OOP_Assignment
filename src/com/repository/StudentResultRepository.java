@@ -1,6 +1,6 @@
-package repository;
+package com.repository;
 
-import domain.StudentResult;
+import com.domain.StudentResult;
 
 import java.util.ArrayList;
 

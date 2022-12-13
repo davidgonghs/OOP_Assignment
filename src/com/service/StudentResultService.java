@@ -1,9 +1,9 @@
-package service;
+package com.service;
 
-import domain.StudentResult;
-import repository.StudentRepository;
-import repository.StudentResultRepository;
-import tool.CommonTool;
+import com.domain.StudentResult;
+import com.repository.StudentRepository;
+import com.repository.StudentResultRepository;
+import com.tool.CommonTool;
 
 import java.util.*;
 

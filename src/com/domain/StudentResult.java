@@ -1,6 +1,4 @@
-package domain;
-
-import domain.CSVClass;
+package com.domain;
 
 public class StudentResult implements CSVClass {
     private String studentNumber;
