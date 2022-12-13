@@ -203,6 +203,47 @@ public class CommonTool {
 //                System.out.println("Invalid input, please try again.");
         }
     }
+    
+        //Class booking
+    public static boolean isClassNameCodeValid(int _code){
+        try {
+            if (_code >= 1 && _code <= 4){
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public static boolean isClassIdValid(int code){
+        try {
+            if (code >= 1 && code <= 2){
+
+
+                return true;
+            }else {
+                return false;
+            }
+        }catch (Exception e){
+            return false;
+        }
+    }
+    public static String classCodeToName(int _classCode){
+        if (_classCode == 1) {
+            return "IT Lab";
+        } else if (_classCode== 2) {
+            return "Engineering Lab";
+        } else if (_classCode == 3) {
+            return "Art Studio";
+        } else if (_classCode == 4) {
+            return "Lecture Hall ";
+        } else {
+            return null;
+        }
+    }
+
+
 
 
 }
