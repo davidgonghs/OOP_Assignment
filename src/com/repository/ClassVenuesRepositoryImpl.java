@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ClassVenuesRepositoryImpl implements ClassVenuesRepository {
 
-    private static String classVenuesDataPath = "src/com.data/classVenues.csv";
+    private static String classVenuesDataPath = "src/com/data/classVenues.csv";
 
     private Map<String, List<ClassVenues>> classVenuesMap = new HashMap<>();
     //    public ArrayList<SportsFacilities> sportsBooking =

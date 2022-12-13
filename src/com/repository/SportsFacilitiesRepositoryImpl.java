@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SportsFacilitiesRepositoryImpl implements SportsFacilitiesRepository{
-    private static String sportsFacilitiesDataPath = "src/com.data/sportsFacilities.csv";
+    private static String sportsFacilitiesDataPath = "src/com/data/sportsFacilities.csv";
 
     //student result map  <StudentNumber,result list>
     private Map<String, List<SportsFacilities>> sportsFacilitiesMap = new HashMap<>();

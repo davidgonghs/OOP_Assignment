@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class StudentResultRepositoryImpl implements StudentResultRepository {
     //com.data file path
-    private static String studentResultDataPath = "src/com.data/studentResult.csv";
+    private static String studentResultDataPath = "src/com/data/studentResult.csv";
 
     //student result map  <StudentNumber,result list>
     private Map<String, List<StudentResult>> studentResultMap = new HashMap<>();
