@@ -177,7 +177,6 @@ public class SportsFacilitiesService extends Service{
             scanner.nextLine();
             sportsFacilityName = CommonTool.sportsNameCodeToName(sportsNameCode);
         }
-        System.out.println(sportsFacilityName);
 
 
         ///////////////////////////////////////////////////////
